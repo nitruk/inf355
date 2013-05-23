@@ -117,6 +117,10 @@
 
 (test (myor #f #f #f #f) #f)
 (test (myor #f #f 42 #f) 42)
+(test
+ (let ((x 1))
+   (+ (myor (begin (set! x (+ 1 x)) x)) x) 4)
+ 4)
 
 (define-syntax while
   (syntax-rules ()
@@ -157,51 +161,38 @@
 (define-trace foo (lambda (bar) (+ bar 5)))
 (define-trace (too bar) (+ bar 5))
 
-(define-syntax contract
-  (lambda (x)
+(define-syntax (contract x)
     (syntax-case x (pre post inv)
-      ((_ (pre expr) rest ...)
-       (syntax
-        (begin
-          (if expr (void) (error "Condition broken before block execution"))
-          (if (null? '(rest ...))
-              (void)
-              (contract rest ...)))))
-      ((_ (post expr) rest ...)
-       (syntax
-        (begin0
-          (if (null? '(rest ...))
-              (void)
-              (contract rest ...))
-        (if expr (void) (error "Condition broken at end of block")))))
-      ((_ (inv expr) rest ...)
-       (syntax
-        (begin
-          (if expr (void) (error "Condition broken before block execution"))
-          (begin0
-            (if (null? '(rest ...))
-                (void)
-                (contract rest ...)))
-           (if expr (void) (error "Condition broken at end of block")))))
-      ((_ body ...)
-       (syntax 
-        (begin
-          body ...))))))
+      ((_ expr ...)
+       (let ((pre (datum->syntax x 'pre))
+         (post (datum->syntax x 'post))
+         (inv (datum->syntax x 'inv)))
+         #`(begin
+             (let ((postlist null)
+                 (#,pre (lambda (y) (if y (void) (error "Condition broken before block execution")))))
+              (let-syntax
+                  ((#,post (syntax-rules ()
+                                   ((#,post y) (set! postlist (cons (delay y) postlist)))))
+                   (#,inv (syntax-rules ()
+                            ((#,inv y) (begin (if y (void) (error "Condition broken before block execution")) (set! postlist (cons (delay y) postlist)))))))
+                (begin
+                  expr ...
+                 (for-each (lambda (y) (if (force y) (void) (error "Condition broken at end of block"))) postlist)))))))))
 
 (let ((i 1))
-  (contract (pre (< i 2)) (post (< i 10)) (inv (> i 0)) (while (< i 9) (set! i (+ i 1)))))
+  (contract (pre (< i 2)) (post (< i 10)) (inv (> i 0)) (while (< i 9) (begin (set! i (+ 1 i))))))
 
-(define-syntax define-data
-  (lambda (x)
+(define-syntax (define-data x)
     (syntax-case x ()
       ((_ name field1 ...)
-       (with-syntax ((constructor (string->symbol (string-append "<" (symbol->string 'name) ">"))))
-         (define (syntax constructor)
-           (lambda ()
-             (let ('field1 null) ...
-               (let 'name
-                 (lambda (command . args)
-                   (case command
-                     ((string-symbol (string-append (symbol->string 'field1) ">>")) 'field1) ...
-                     ((string-symbol (string-append ">>" (symbol->string 'field1))) (set! 'field1 (car args))) ...))
-                 'name)))))))))
+       (let* ((constructor (datum->syntax x (string->symbol (string-append "<" (symbol->string (syntax->datum #'name)) ">"))))
+             ((syntax field1) (datum->syntax x (string->symbol (string-append (symbol->string (syntax->datum field1)) ">>")))))
+         #`(define-values (values #,constructor
+                                  (datum->syntax x (string->symbol (string-append (symbol->string (syntax->datum field1)) ">>")) ...))
+              (lambda ()
+                (let ((field1 null) ...)
+                (list field1 ...))))))))
+
+(define-data student grade age class)
+(define student0 (<student>))
+student0
