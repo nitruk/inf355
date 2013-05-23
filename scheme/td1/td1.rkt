@@ -1,5 +1,7 @@
 #lang racket
 
+(require (for-syntax scheme))
+
 (define test
   (lambda (a b)
     (if (equal? a b)
@@ -185,14 +187,30 @@
 (define-syntax (define-data x)
     (syntax-case x ()
       ((_ name field1 ...)
-       (let* ((constructor (datum->syntax x (string->symbol (string-append "<" (symbol->string (syntax->datum #'name)) ">"))))
-             ((syntax field1) (datum->syntax x (string->symbol (string-append (symbol->string (syntax->datum field1)) ">>")))))
-         #`(define-values (values #,constructor
-                                  (datum->syntax x (string->symbol (string-append (symbol->string (syntax->datum field1)) ">>")) ...))
-              (lambda ()
-                (let ((field1 null) ...)
-                (list field1 ...))))))))
+       (let ((constructor (datum->syntax x (string->symbol (string-append "<" (symbol->string (syntax->datum #'name)) ">")))))
+         (begin0
+           #`(define #,constructor
+               (lambda ()
+                 (let ((field1 null) ...)
+                   (lambda (op . val)
+                     (case op
+                       ((string->symbol (string-append "get-" (symbol->string (syntax->datum field1)))) field1) ...
+                       ((string->symbol (string-append "set-" (symbol->string (syntax->datum field1)))) (set! field1 val)) ...
+                       (else (list (string->symbol (string-append "get-" (symbol->string (syntax->datum #'field1)))) ...))
+                       )))))
+           (let-syntax ((define-field
+                          (lambda x (syntax-case x ()
+                                      ((_) #'(void))
+                                      ((_ f1 f2 ...)
+                                       (let
+                                           ((get (datum->syntax x (string->symbol (string-append (symbol->string (syntax->datum #'f1)) ">>"))))
+                                            (set (datum->syntax x (string->symbol (string-append ">>" (symbol->string (syntax->datum #'f1)))))))
+                                         #`(define-values (#,get #,set)
+                                             ((lambda (obj) (obj (string->symbol (string-append "get-" (symbol->string (syntax->datum #'field1))))))
+                                              (lambda (obj val) (obj (string->symbol (string-append "set-" (symbol->string (syntax->datum #'field1)))) val))) 
+                                             )))))))
+             #'(define-field field1 ...)))))))
 
 (define-data student grade age class)
 (define student0 (<student>))
-student0
+(student0 'get-age)
