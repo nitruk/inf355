@@ -82,7 +82,9 @@
                            (if (let/cc k
                                  (set! threads (cons k threads))
                                  #false)
-                             (apply f args)
+                             (begin
+                               (apply f args)
+                               (schedule #f))
                              (void))))))
     (values start-thread scheduler yield)))
 
