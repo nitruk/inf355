@@ -6,11 +6,11 @@ type Stack = [Int]
 
 type Operator = Stack -> Stack
 
-depth :: Stack -> Integer
+depth :: Stack -> Int
 depth [] = 0
 depth (x : xs) = 1 + depth xs
 
-pick :: Integer -> Stack -> Int
+pick :: Int -> Stack -> Int
 pick _ [] = error "Not enough elements"
 pick 1 (x : xs) = x
 pick n (x : xs) = pick (n - 1) xs
@@ -42,3 +42,5 @@ repl stack = do
   putStrLn $ show $ reverse newstack
   repl newstack
 main = repl []
+
+data Peano = Zero | Succ(Peano)

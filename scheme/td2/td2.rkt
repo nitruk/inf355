@@ -59,10 +59,9 @@
              (loop))
            (void))))))
 
-(define schedule #f)
-
 (define-values (start-thread scheduler yield)
   (let* ((threads null)
+         (schedule #f)
          (scheduler (lambda ()
                       (while (not (null? threads))
                              (let ((thread (car threads)))
