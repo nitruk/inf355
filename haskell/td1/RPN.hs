@@ -12,13 +12,14 @@ depth (x : xs) = 1 + depth xs
 
 pick :: Peano -> Stack -> Peano
 pick _ [] = error "Not enough elements"
-pick 1 (x : xs) = x
+pick Zero (x : xs) = x
 pick n (x : xs) = pick (n - 1) xs
 
 parseOp :: String -> Operator
 parseOp "+" = \ (x : (y : ys)) -> ((x + y) : ys)
-parseOp "-" = \ (x : (y : ys)) -> ((x - y) : ys)
+parseOp "-" = \ (x : (y : ys)) -> ((y - x) : ys)
 parseOp "*" = \ (x : (y : ys)) -> ((x * y) : ys)
+parseOp "/" = \ (x : (y : ys)) -> ((div y x) : ys)
 parseOp "dup" = \ (x : xs) -> (x : (x : xs))
 parseOp "swap" = \ (x : (y : ys)) -> (y : (x : ys))
 parseOp "drop" = \ (x : xs) -> xs
