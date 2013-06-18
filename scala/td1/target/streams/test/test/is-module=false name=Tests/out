@@ -1,0 +1,16 @@
+[0m[[0minfo[0m] [0m[32mTests:[0m[0m
+[0m[[0minfo[0m] [0m[32misOdd/isEven [0m[0m
+[0m[[0minfo[0m] [0m[32m- should characterize 1 correctly[0m[0m
+[0m[[0minfo[0m] [0m[32m- should characterize 2 correctly[0m[0m
+[0m[[0minfo[0m] [0m[32many [0m[0m
+[0m[[0minfo[0m] [0m[32m- should work with an empty list[0m[0m
+[0m[[0minfo[0m] [0m[32m- should identify an odd number[0m[0m
+[0m[[0minfo[0m] [0m[32m- should not identify even numbers[0m[0m
+[0m[[0minfo[0m] [0m[32mall [0m[0m
+[0m[[0minfo[0m] [0m[32m- should work with an empty list[0m[0m
+[0m[[0minfo[0m] [0m[32m- should work with all even numbers[0m[0m
+[0m[[0minfo[0m] [0m[32m- should fail with an odd number in the list[0m[0m
+[0m[[0minfo[0m] [0m[32mmyWhile [0m[0m
+[0m[[0minfo[0m] [0m[32m- should not evaluate actions when false[0m[0m
+[0m[[0minfo[0m] [0m[32m- should not evaluate action several times[0m[0m
+[0m[[0minfo[0m] [0m[32m- should evaluate actions while true[0m[0m

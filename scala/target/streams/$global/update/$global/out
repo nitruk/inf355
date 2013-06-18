@@ -1,0 +1,527 @@
+[0m[[0minfo[0m] [0mUpdating {file:/home/nitruk/inf355/scala/}default-b59bc9...[0m
+[0m[[0mdebug[0m] [0m:: resolving dependencies :: default#default-b59bc9_2.10;0.1-SNAPSHOT[0m
+[0m[[0mdebug[0m] [0m	confs: [compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom][0m
+[0m[[0mdebug[0m] [0m	validate = true[0m
+[0m[[0mdebug[0m] [0m	refresh = false[0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'compile'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.10.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-lang#scala-library;2.10.2 {compile=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-library;2.10.2[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: org.scala-lang#scala-library;2.10.2[0m
+[0m[[0mdebug[0m] [0m	found org.scala-lang#scala-library;2.10.2 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->master][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'runtime'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->master][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'test'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [test][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.specs2#specs2_2.10;1.14 [test->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.specs2#specs2_2.10;1.14 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.specs2#specs2_2.10;1.14 {test=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0m		tried /home/nitruk/.ivy2/local/org.specs2/specs2_2.10/1.14/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for org.specs2#specs2_2.10;1.14[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/snapshots/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.pom[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Retrieval of /org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.pom from M2Repository(id=snapshots) is forbidden by repository policy SNAPSHOT. url=http://oss.sonatype.org/content/repositories/snapshots/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.pom[0m
+[0m[[0mdebug[0m] [0m	snapshots: no ivy file found for org.specs2#specs2_2.10;1.14[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.pom[0m
+[0m[[0mdebug[0m] [0m	releases: found md file for org.specs2#specs2_2.10;1.14[0m
+[0m[[0mdebug[0m] [0m		=> http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.pom (1.14)[0m
+[0m[[0mdebug[0m] [0mdownloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.pom ...[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.pom[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.specs2#specs2_2.10;1.14!specs2_2.10.pom(pom.original) (535ms)[0m
+[0m[[0mdebug[0m] [0m		tried /home/nitruk/.ivy2/local/org.specs2/specs2_2.10/1.14/jars/specs2_2.10.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/snapshots/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.jar[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Retrieval of /org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.jar from M2Repository(id=snapshots) is forbidden by repository policy SNAPSHOT. url=http://oss.sonatype.org/content/repositories/snapshots/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.jar[0m
+[0m[[0mdebug[0m] [0m	found org.specs2#specs2_2.10;1.14 in releases[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.specs2#specs2_2.10;1.14 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.specs2#specs2_2.10;1.14 [test->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-core_2.10;7.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0minfo[0m] [0mResolving org.specs2#specs2-scalaz-core_2.10;7.0.0 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.specs2#specs2-scalaz-core_2.10;7.0.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m		tried /home/nitruk/.ivy2/local/org.specs2/specs2-scalaz-core_2.10/7.0.0/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for org.specs2#specs2-scalaz-core_2.10;7.0.0[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/snapshots/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Retrieval of /org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.pom from M2Repository(id=snapshots) is forbidden by repository policy SNAPSHOT. url=http://oss.sonatype.org/content/repositories/snapshots/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	snapshots: no ivy file found for org.specs2#specs2-scalaz-core_2.10;7.0.0[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	releases: found md file for org.specs2#specs2-scalaz-core_2.10;7.0.0[0m
+[0m[[0mdebug[0m] [0m		=> http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.pom (7.0.0)[0m
+[0m[[0mdebug[0m] [0mdownloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.pom ...[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.specs2#specs2-scalaz-core_2.10;7.0.0!specs2-scalaz-core_2.10.pom(pom.original) (532ms)[0m
+[0m[[0mdebug[0m] [0m		tried /home/nitruk/.ivy2/local/org.specs2/specs2-scalaz-core_2.10/7.0.0/jars/specs2-scalaz-core_2.10.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/snapshots/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Retrieval of /org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.jar from M2Repository(id=snapshots) is forbidden by repository policy SNAPSHOT. url=http://oss.sonatype.org/content/repositories/snapshots/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0m	found org.specs2#specs2-scalaz-core_2.10;7.0.0 in releases[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-core_2.10;7.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-core_2.10;7.0.0 [compile->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-core_2.10;7.0.0 [compile->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0minfo[0m] [0mResolving org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m		tried /home/nitruk/.ivy2/local/org.specs2/specs2-scalaz-concurrent_2.10/7.0.0/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for org.specs2#specs2-scalaz-concurrent_2.10;7.0.0[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/snapshots/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Retrieval of /org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.pom from M2Repository(id=snapshots) is forbidden by repository policy SNAPSHOT. url=http://oss.sonatype.org/content/repositories/snapshots/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	snapshots: no ivy file found for org.specs2#specs2-scalaz-concurrent_2.10;7.0.0[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	releases: found md file for org.specs2#specs2-scalaz-concurrent_2.10;7.0.0[0m
+[0m[[0mdebug[0m] [0m		=> http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.pom (7.0.0)[0m
+[0m[[0mdebug[0m] [0mdownloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.pom ...[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.specs2#specs2-scalaz-concurrent_2.10;7.0.0!specs2-scalaz-concurrent_2.10.pom(pom.original) (566ms)[0m
+[0m[[0mdebug[0m] [0m		tried /home/nitruk/.ivy2/local/org.specs2/specs2-scalaz-concurrent_2.10/7.0.0/jars/specs2-scalaz-concurrent_2.10.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/snapshots/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Retrieval of /org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.jar from M2Repository(id=snapshots) is forbidden by repository policy SNAPSHOT. url=http://oss.sonatype.org/content/repositories/snapshots/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0m	found org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 in releases[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#specs2-scalaz-core_2.10;7.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#specs2-scalaz-core_2.10;7.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#scalaz-effect_2.10;7.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0minfo[0m] [0mResolving org.specs2#scalaz-effect_2.10;7.0.0 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.specs2#scalaz-effect_2.10;7.0.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m		tried /home/nitruk/.ivy2/local/org.specs2/scalaz-effect_2.10/7.0.0/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for org.specs2#scalaz-effect_2.10;7.0.0[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/snapshots/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Retrieval of /org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.pom from M2Repository(id=snapshots) is forbidden by repository policy SNAPSHOT. url=http://oss.sonatype.org/content/repositories/snapshots/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	snapshots: no ivy file found for org.specs2#scalaz-effect_2.10;7.0.0[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	releases: found md file for org.specs2#scalaz-effect_2.10;7.0.0[0m
+[0m[[0mdebug[0m] [0m		=> http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.pom (7.0.0)[0m
+[0m[[0mdebug[0m] [0mdownloading http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.pom ...[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.specs2#scalaz-effect_2.10;7.0.0!scalaz-effect_2.10.pom(pom.original) (552ms)[0m
+[0m[[0mdebug[0m] [0m		tried /home/nitruk/.ivy2/local/org.specs2/scalaz-effect_2.10/7.0.0/jars/scalaz-effect_2.10.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/snapshots/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Retrieval of /org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.jar from M2Repository(id=snapshots) is forbidden by repository policy SNAPSHOT. url=http://oss.sonatype.org/content/repositories/snapshots/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0m	found org.specs2#scalaz-effect_2.10;7.0.0 in releases[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#scalaz-effect_2.10;7.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.specs2#scalaz-core_2.10;7.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0minfo[0m] [0mResolving org.specs2#scalaz-core_2.10;7.0.0 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.specs2#scalaz-core_2.10;7.0.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m		tried /home/nitruk/.ivy2/local/org.specs2/scalaz-core_2.10/7.0.0/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for org.specs2#scalaz-core_2.10;7.0.0[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/snapshots/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Retrieval of /org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.pom from M2Repository(id=snapshots) is forbidden by repository policy SNAPSHOT. url=http://oss.sonatype.org/content/repositories/snapshots/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	snapshots: no ivy file found for org.specs2#scalaz-core_2.10;7.0.0[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	releases: found md file for org.specs2#scalaz-core_2.10;7.0.0[0m
+[0m[[0mdebug[0m] [0m		=> http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.pom (7.0.0)[0m
+[0m[[0mdebug[0m] [0mdownloading http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.pom ...[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.specs2#scalaz-core_2.10;7.0.0!scalaz-core_2.10.pom(pom.original) (543ms)[0m
+[0m[[0mdebug[0m] [0m		tried /home/nitruk/.ivy2/local/org.specs2/scalaz-core_2.10/7.0.0/jars/scalaz-core_2.10.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/snapshots/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Retrieval of /org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.jar from M2Repository(id=snapshots) is forbidden by repository policy SNAPSHOT. url=http://oss.sonatype.org/content/repositories/snapshots/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0m	found org.specs2#scalaz-core_2.10;7.0.0 in releases[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.specs2#scalaz-core_2.10;7.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 [compile->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 [compile->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#specs2-scalaz-core_2.10;7.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#specs2-scalaz-core_2.10;7.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#scalaz-effect_2.10;7.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#scalaz-effect_2.10;7.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.specs2#scalaz-core_2.10;7.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.specs2#scalaz-core_2.10;7.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-core_2.10;7.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-core_2.10;7.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.specs2#specs2_2.10;1.14 [test->master][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scalacheck#scalacheck_2.10;1.10.1 [test->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.scalacheck#scalacheck_2.10;1.10.1 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scalacheck#scalacheck_2.10;1.10.1 {test=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0m		tried /home/nitruk/.ivy2/local/org.scalacheck/scalacheck_2.10/1.10.1/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for org.scalacheck#scalacheck_2.10;1.10.1[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/snapshots/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.pom[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Retrieval of /org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.pom from M2Repository(id=snapshots) is forbidden by repository policy SNAPSHOT. url=http://oss.sonatype.org/content/repositories/snapshots/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.pom[0m
+[0m[[0mdebug[0m] [0m	snapshots: no ivy file found for org.scalacheck#scalacheck_2.10;1.10.1[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.pom[0m
+[0m[[0mdebug[0m] [0m	releases: found md file for org.scalacheck#scalacheck_2.10;1.10.1[0m
+[0m[[0mdebug[0m] [0m		=> http://oss.sonatype.org/content/repositories/releases/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.pom (1.10.1)[0m
+[0m[[0mdebug[0m] [0mdownloading http://oss.sonatype.org/content/repositories/releases/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.pom ...[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.pom[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://oss.sonatype.org/content/repositories/releases/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.scalacheck#scalacheck_2.10;1.10.1!scalacheck_2.10.pom(pom.original) (538ms)[0m
+[0m[[0mdebug[0m] [0m		tried /home/nitruk/.ivy2/local/org.scalacheck/scalacheck_2.10/1.10.1/jars/scalacheck_2.10.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/snapshots/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.jar[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Retrieval of /org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.jar from M2Repository(id=snapshots) is forbidden by repository policy SNAPSHOT. url=http://oss.sonatype.org/content/repositories/snapshots/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.jar[0m
+[0m[[0mdebug[0m] [0m	found org.scalacheck#scalacheck_2.10;1.10.1 in releases[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scalacheck#scalacheck_2.10;1.10.1 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scalacheck#scalacheck_2.10;1.10.1 [test->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-library;2.10.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-library;2.10.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-tools.testing#test-interface;0.5 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0minfo[0m] [0mResolving org.scala-tools.testing#test-interface;0.5 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-tools.testing#test-interface;0.5 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-tools.testing#test-interface;0.5[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: org.scala-tools.testing#test-interface;0.5[0m
+[0m[[0mdebug[0m] [0m	found org.scala-tools.testing#test-interface;0.5 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-tools.testing#test-interface;0.5 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-actors;2.10.1 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-actors;2.10.1 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-lang#scala-actors;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m		tried /home/nitruk/.ivy2/local/org.scala-lang/scala-actors/2.10.1/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for org.scala-lang#scala-actors;2.10.1[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/snapshots/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.pom[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Retrieval of /org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.pom from M2Repository(id=snapshots) is forbidden by repository policy SNAPSHOT. url=http://oss.sonatype.org/content/repositories/snapshots/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.pom[0m
+[0m[[0mdebug[0m] [0m	snapshots: no ivy file found for org.scala-lang#scala-actors;2.10.1[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.pom[0m
+[0m[[0mdebug[0m] [0m	releases: found md file for org.scala-lang#scala-actors;2.10.1[0m
+[0m[[0mdebug[0m] [0m		=> http://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.pom (2.10.1)[0m
+[0m[[0mdebug[0m] [0mdownloading http://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.pom ...[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.pom[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.scala-lang#scala-actors;2.10.1!scala-actors.pom(pom.original) (530ms)[0m
+[0m[[0mdebug[0m] [0m		tried /home/nitruk/.ivy2/local/org.scala-lang/scala-actors/2.10.1/jars/scala-actors.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/snapshots/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.jar[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Retrieval of /org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.jar from M2Repository(id=snapshots) is forbidden by repository policy SNAPSHOT. url=http://oss.sonatype.org/content/repositories/snapshots/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.jar[0m
+[0m[[0mdebug[0m] [0m	found org.scala-lang#scala-actors;2.10.1 in releases[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-actors;2.10.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.1->org.scala-lang#scala-library;2.10.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.1->org.scala-lang#scala-library;2.10.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-library;2.10.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-library;2.10.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-tools.testing#test-interface;0.5 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-tools.testing#test-interface;0.5 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-actors;2.10.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-actors;2.10.1 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.1->org.scala-lang#scala-library;2.10.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.1->org.scala-lang#scala-library;2.10.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scalacheck#scalacheck_2.10;1.10.1 [test->master][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'provided'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [provided][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'optional'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [optional][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'compile-internal'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [compile-internal][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [optional][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [provided][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'runtime-internal'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [runtime-internal][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [optional][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'test-internal'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [test-internal][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [test][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.specs2#specs2_2.10;1.14 [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.specs2#specs2_2.10;1.14 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.specs2#specs2_2.10;1.14 [test->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-core_2.10;7.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-core_2.10;7.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#specs2-scalaz-core_2.10;7.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#specs2-scalaz-core_2.10;7.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#scalaz-effect_2.10;7.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#scalaz-effect_2.10;7.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.specs2#scalaz-core_2.10;7.0.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.specs2#scalaz-core_2.10;7.0.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-core_2.10;7.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-core_2.10;7.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#specs2-scalaz-core_2.10;7.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#specs2-scalaz-core_2.10;7.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#scalaz-effect_2.10;7.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.specs2#scalaz-effect_2.10;7.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.specs2#scalaz-core_2.10;7.0.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.specs2#scalaz-core_2.10;7.0.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#scalaz-effect_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.scala-lang#scala-library;2.10.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.specs2#specs2_2.10;1.14 [test->master][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.0 {optional=[compile(*), master(*)]} => dependency: org.scala-lang#scala-compiler;2.10.2 {optional=[compile(*), master(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scalacheck#scalacheck_2.10;1.10.1 [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scalacheck#scalacheck_2.10;1.10.1 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scalacheck#scalacheck_2.10;1.10.1 [test->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-library;2.10.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-library;2.10.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-tools.testing#test-interface;0.5 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-tools.testing#test-interface;0.5 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-actors;2.10.1 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-actors;2.10.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.1->org.scala-lang#scala-library;2.10.2 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.1->org.scala-lang#scala-library;2.10.2 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-library;2.10.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-library;2.10.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-tools.testing#test-interface;0.5 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-tools.testing#test-interface;0.5 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-actors;2.10.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scalacheck#scalacheck_2.10;1.10.1->org.scala-lang#scala-actors;2.10.1 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.1->org.scala-lang#scala-library;2.10.2 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.1->org.scala-lang#scala-library;2.10.2 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#default-b59bc9_2.10;0.1-SNAPSHOT->org.scalacheck#scalacheck_2.10;1.10.1 [test->master][0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [optional][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [provided][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'plugin'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [plugin][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'sources'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [sources][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'docs'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [docs][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'pom'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for default#default-b59bc9_2.10;0.1-SNAPSHOT [pom][0m
+[0m[[0mdebug[0m] [0m	resolved ivy file produced in /home/nitruk/inf355/scala/target/resolution-cache/default/default-b59bc9_2.10/0.1-SNAPSHOT/resolved.xml.xml[0m
+[0m[[0mdebug[0m] [0m:: downloading artifacts ::[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.jar[0m
+[0m[[0minfo[0m] [0mdownloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.jar ...[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.jar[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2_2.10/1.14/specs2_2.10-1.14.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.specs2#specs2_2.10;1.14!specs2_2.10.jar (5522ms)[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.jar[0m
+[0m[[0minfo[0m] [0mdownloading http://oss.sonatype.org/content/repositories/releases/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.jar ...[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.jar[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://oss.sonatype.org/content/repositories/releases/org/scalacheck/scalacheck_2.10/1.10.1/scalacheck_2.10-1.10.1.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.scalacheck#scalacheck_2.10;1.10.1!scalacheck_2.10.jar (1269ms)[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.jar[0m
+[0m[[0minfo[0m] [0mdownloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.jar ...[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-core_2.10/7.0.0/specs2-scalaz-core_2.10-7.0.0.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.specs2#specs2-scalaz-core_2.10;7.0.0!specs2-scalaz-core_2.10.jar (9872ms)[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.jar[0m
+[0m[[0minfo[0m] [0mdownloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.jar ...[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://oss.sonatype.org/content/repositories/releases/org/specs2/specs2-scalaz-concurrent_2.10/7.0.0/specs2-scalaz-concurrent_2.10-7.0.0.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.specs2#specs2-scalaz-concurrent_2.10;7.0.0!specs2-scalaz-concurrent_2.10.jar (1561ms)[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.jar[0m
+[0m[[0minfo[0m] [0mdownloading http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.jar ...[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-effect_2.10/7.0.0/scalaz-effect_2.10-7.0.0.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.specs2#scalaz-effect_2.10;7.0.0!scalaz-effect_2.10.jar (1690ms)[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.jar[0m
+[0m[[0minfo[0m] [0mdownloading http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.jar ...[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.jar[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://oss.sonatype.org/content/repositories/releases/org/specs2/scalaz-core_2.10/7.0.0/scalaz-core_2.10-7.0.0.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.specs2#scalaz-core_2.10;7.0.0!scalaz-core_2.10.jar (7546ms)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-tools.testing#test-interface;0.5!test-interface.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.jar[0m
+[0m[[0minfo[0m] [0mdownloading http://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.jar ...[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.jar[0m
+[0m[[0mdebug[0m] [0m	releases: downloading http://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-actors/2.10.1/scala-actors-2.10.1.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.scala-lang#scala-actors;2.10.1!scala-actors.jar (863ms)[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 7950ms :: artifacts dl 28335ms[0m
+[0m[[0mdebug[0m] [0m	report for default#default-b59bc9_2.10;0.1-SNAPSHOT compile produced in /home/nitruk/inf355/scala/target/resolution-cache/reports/default-default-b59bc9_2.10-compile.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#default-b59bc9_2.10;0.1-SNAPSHOT runtime produced in /home/nitruk/inf355/scala/target/resolution-cache/reports/default-default-b59bc9_2.10-runtime.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#default-b59bc9_2.10;0.1-SNAPSHOT test produced in /home/nitruk/inf355/scala/target/resolution-cache/reports/default-default-b59bc9_2.10-test.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#default-b59bc9_2.10;0.1-SNAPSHOT provided produced in /home/nitruk/inf355/scala/target/resolution-cache/reports/default-default-b59bc9_2.10-provided.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#default-b59bc9_2.10;0.1-SNAPSHOT optional produced in /home/nitruk/inf355/scala/target/resolution-cache/reports/default-default-b59bc9_2.10-optional.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#default-b59bc9_2.10;0.1-SNAPSHOT compile-internal produced in /home/nitruk/inf355/scala/target/resolution-cache/reports/default-default-b59bc9_2.10-compile-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#default-b59bc9_2.10;0.1-SNAPSHOT runtime-internal produced in /home/nitruk/inf355/scala/target/resolution-cache/reports/default-default-b59bc9_2.10-runtime-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#default-b59bc9_2.10;0.1-SNAPSHOT test-internal produced in /home/nitruk/inf355/scala/target/resolution-cache/reports/default-default-b59bc9_2.10-test-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#default-b59bc9_2.10;0.1-SNAPSHOT plugin produced in /home/nitruk/inf355/scala/target/resolution-cache/reports/default-default-b59bc9_2.10-plugin.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#default-b59bc9_2.10;0.1-SNAPSHOT sources produced in /home/nitruk/inf355/scala/target/resolution-cache/reports/default-default-b59bc9_2.10-sources.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#default-b59bc9_2.10;0.1-SNAPSHOT docs produced in /home/nitruk/inf355/scala/target/resolution-cache/reports/default-default-b59bc9_2.10-docs.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#default-b59bc9_2.10;0.1-SNAPSHOT pom produced in /home/nitruk/inf355/scala/target/resolution-cache/reports/default-default-b59bc9_2.10-pom.xml[0m
+[0m[[0mdebug[0m] [0m	resolve done (7950ms resolve - 28335ms download)[0m
+[0m[[0minfo[0m] [0mDone updating.[0m

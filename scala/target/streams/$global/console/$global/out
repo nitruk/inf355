@@ -1,0 +1,29 @@
+[0m[[0mdebug[0m] [0mGetting compiler-interface from component compiler for Scala 2.10.2[0m
+[0m[[0mdebug[0m] [0mOther repositories:[0m
+[0m[[0mdebug[0m] [0mDefault repositories:[0m
+[0m[[0mdebug[0m] [0m	FileRepository(local,FileConfiguration(true,None),Patterns(ivyPatterns=List(${ivy.home}/local/[organisation]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]), artifactPatterns=List(${ivy.home}/local/[organisation]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]), isMavenCompatible=false))[0m
+[0m[[0mdebug[0m] [0mOther repositories:[0m
+[0m[[0mdebug[0m] [0mDefault repositories:[0m
+[0m[[0mdebug[0m] [0m	FileRepository(local,FileConfiguration(true,None),Patterns(ivyPatterns=List(${ivy.home}/local/[organisation]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]), artifactPatterns=List(${ivy.home}/local/[organisation]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]), isMavenCompatible=false))[0m
+[0m[[0minfo[0m] [0m'compiler-interface' not yet compiled for Scala 2.10.2. Compiling...[0m
+[0m[[0mdebug[0m] [0mPlain interface to Scala compiler 2.10.2  with arguments: [0m
+[0m[[0mdebug[0m] [0m	-nowarn[0m
+[0m[[0mdebug[0m] [0m	-d[0m
+[0m[[0mdebug[0m] [0m	/tmp/sbt_ffd43231[0m
+[0m[[0mdebug[0m] [0m	-bootclasspath[0m
+[0m[[0mdebug[0m] [0m	/home/nitruk/jdk1.6.0_33/jre/lib/resources.jar:/home/nitruk/jdk1.6.0_33/jre/lib/rt.jar:/home/nitruk/jdk1.6.0_33/jre/lib/sunrsasign.jar:/home/nitruk/jdk1.6.0_33/jre/lib/jsse.jar:/home/nitruk/jdk1.6.0_33/jre/lib/jce.jar:/home/nitruk/jdk1.6.0_33/jre/lib/charsets.jar:/home/nitruk/jdk1.6.0_33/jre/lib/modules/jdk.boot.jar:/home/nitruk/jdk1.6.0_33/jre/classes:/home/nitruk/.sbt/boot/scala-2.10.2/lib/scala-library.jar[0m
+[0m[[0mdebug[0m] [0m	-classpath[0m
+[0m[[0mdebug[0m] [0m	/home/nitruk/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.3/xsbti/interface-0.12.3.jar:/home/nitruk/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.3/compiler-interface-src/compiler-interface-src-0.12.3.jar:/home/nitruk/.sbt/boot/scala-2.10.2/lib/scala-compiler.jar:/home/nitruk/.sbt/boot/scala-2.10.2/lib/jansi.jar:/home/nitruk/.sbt/boot/scala-2.10.2/lib/jline.jar:/home/nitruk/.sbt/boot/scala-2.10.2/lib/scala-reflect.jar[0m
+[0m[[0mdebug[0m] [0m	/tmp/sbt_ec7e4dbc/API.scala[0m
+[0m[[0mdebug[0m] [0m	/tmp/sbt_ec7e4dbc/Analyzer.scala[0m
+[0m[[0mdebug[0m] [0m	/tmp/sbt_ec7e4dbc/Command.scala[0m
+[0m[[0mdebug[0m] [0m	/tmp/sbt_ec7e4dbc/CompilerInterface.scala[0m
+[0m[[0mdebug[0m] [0m	/tmp/sbt_ec7e4dbc/ConsoleInterface.scala[0m
+[0m[[0mdebug[0m] [0m	/tmp/sbt_ec7e4dbc/DelegatingReporter.scala[0m
+[0m[[0mdebug[0m] [0m	/tmp/sbt_ec7e4dbc/Log.scala[0m
+[0m[[0mdebug[0m] [0m	/tmp/sbt_ec7e4dbc/Message.scala[0m
+[0m[[0mdebug[0m] [0m	/tmp/sbt_ec7e4dbc/ScaladocInterface.scala[0m
+[0m[[0minfo[0m] [0m  Compilation completed in 21.26 s[0m
+[0m[[0mdebug[0m] [0mOther repositories:[0m
+[0m[[0mdebug[0m] [0mDefault repositories:[0m
+[0m[[0mdebug[0m] [0m	FileRepository(local,FileConfiguration(true,None),Patterns(ivyPatterns=List(${ivy.home}/local/[organisation]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]), artifactPatterns=List(${ivy.home}/local/[organisation]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]), isMavenCompatible=false))[0m

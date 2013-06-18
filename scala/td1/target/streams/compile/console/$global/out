@@ -1,0 +1,11 @@
+[0m[[0mdebug[0m] [0mStarting sandboxed run...[0m
+[0m[[0mdebug[0m] [0mWaiting for threads to exit or System.exit to be called.[0m
+[0m[[0mdebug[0m] [0mWaiting for thread run-main to exit[0m
+[0m[[0minfo[0m] [0mStarting scala interpreter...[0m
+[0m[[0mdebug[0m] [0m  Boot classpath: /home/nitruk/jdk1.6.0_33/jre/lib/resources.jar:/home/nitruk/jdk1.6.0_33/jre/lib/rt.jar:/home/nitruk/jdk1.6.0_33/jre/lib/sunrsasign.jar:/home/nitruk/jdk1.6.0_33/jre/lib/jsse.jar:/home/nitruk/jdk1.6.0_33/jre/lib/jce.jar:/home/nitruk/jdk1.6.0_33/jre/lib/charsets.jar:/home/nitruk/jdk1.6.0_33/jre/lib/modules/jdk.boot.jar:/home/nitruk/jdk1.6.0_33/jre/classes:/home/nitruk/.sbt/boot/scala-2.10.2/lib/scala-library.jar[0m
+[0m[[0mdebug[0m] [0m  Classpath: /home/nitruk/inf355/scala/td1/target/scala-2.10/classes:/home/nitruk/.ivy2/cache/org.scalatest/scalatest_2.10/jars/scalatest_2.10-1.9.1.jar:/home/nitruk/.ivy2/cache/org.scala-lang/scala-actors/jars/scala-actors-2.10.0.jar:/home/nitruk/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.10.0.jar:/home/nitruk/.sbt/boot/scala-2.10.2/lib/scala-compiler.jar:/home/nitruk/.sbt/boot/scala-2.10.2/lib/jansi.jar:/home/nitruk/.sbt/boot/scala-2.10.2/lib/jline.jar:/home/nitruk/.sbt/boot/scala-2.10.2/lib/scala-reflect.jar[0m
+[0m[[0minfo[0m] [0m[0m
+[0m[[0mdebug[0m] [0m	Thread run-main exited.[0m
+[0m[[0mdebug[0m] [0mInterrupting remaining threads (should be all daemons).[0m
+[0m[[0mdebug[0m] [0mSandboxed run complete..[0m
+[0m[[0mdebug[0m] [0mExited with code 0[0m
