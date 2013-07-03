@@ -41,7 +41,7 @@ DEFER: parse-next
 
 : parse-unfold ( quot ast vector seq -- ast vector ) quap [ quap [ to>> ] [ effect>> ] bi dup quotation?
    [ call( quot ast vector node -- ast vector ) ]
-   [ swapd [ [ [ 2swap ] dip parse-next ] 3curry ] 2dip (parse) ]
+   [ swapd [ [ over [ 2swap ] 2dip parse-null = [ [ 1vector ] 2dip ] when parse-next ] 3curry ] 2dip (parse) ]
    if 2vector ] 3curry attempt-all first2 ;
 
 : parse-next-raw ( quot ast vector node -- ast vector ) [ action>> ] [ sons>> ] bi swapd [ call( ast -- ast ) ] 2dip parse-unfold ;
@@ -70,4 +70,4 @@ DEFER: parse-next
 
 : parse ( string parser -- ast ) [ str2v [ ] swap ] dip (parse) drop ;
 
-: action ( parser quot: ( ast -- ast ) -- parser ) [ copy-end ] dip >>action drop ;
+: action ( parser quot: ( ast -- ast ) -- parser ) [ copy-end dup action>> ] dip compose >quotation >>action drop ;
