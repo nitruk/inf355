@@ -15,7 +15,18 @@ UNION: inner-arrow quotation parser ;
 
 TUPLE: arrow { effect inner-arrow } { to node } ;
 
-! Parser effect : ( quot ast vector node -- ast vector )
+! Arrow effect : ( quot ast vector node -- ast vector )
+
+DEFER: (parse)
+
+DEFER: parse-next-raw
+
+DEFER: parse-next
+
+SYMBOL: parse-canceled
+
+
+! Private general-use tool-words
 
 : str2v ( string -- vector ) >vector reverse ;
 
@@ -33,11 +44,8 @@ TUPLE: arrow { effect inner-arrow } { to node } ;
 
 : 4curry ( a b c d quot -- quot ) 2curry 2curry ; inline
 
-DEFER: (parse)
 
-DEFER: parse-next
-
-SYMBOL: parse-canceled
+! Private parsers-related tool-words
 
 : end-node ( -- node ) node new dup [ drop rot call( ast vector -- ast vector ) ] swap arrow boa 1vector >>sons ;
 
@@ -46,6 +54,19 @@ SYMBOL: parse-canceled
 : 1son ( inner-arrow -- vector ) 1arrow 1vector ; 
 
 : uber-seq ( seq -- seq ) dup V{ } = [ unclip dupd 2vector [ uber-seq ] dip prefix ] unless ;
+
+: parse-arrow ( parser -- arrow ) arrow new swap >>effect ;
+
+: copy-end ( parser -- parser node ) dup out>> first to>> ;
+
+: 1parser ( inner-arrow -- parser ) 1son dup parser boa ;
+
+: min-arrow ( -- arrow ) [ parse-next-raw ] 1arrow ;
+
+: 1curser ( elt quot -- parser ) curry >quotation 1parser ;
+
+
+! Private core-words
 
 : ast-combine ( ast ast -- ast ) over parse-null = [ nip ] [ dup parse-null = [ drop ] [ [ dup vector? [ 1vector ] unless ] dip suffix ] if ] if ;
 
@@ -58,17 +79,27 @@ SYMBOL: parse-canceled
 
 : parse-next ( quot ast ast vector node -- ast vector ) [ ast-combine ] 2dip parse-next-raw ;
 
-: 1parser ( inner-arrow -- parser ) 1son dup parser boa ;
+: (parse) ( quot vector parser -- ast vector ) in>> [ parse-null ] 2dip parse-unfold ;
 
-: min-arrow ( -- arrow ) [ parse-next-raw ] 1arrow ;
 
-: arb ( -- parser ) [ swap dup length [0,b) trap [ [ swap cut* v2str swap ] dip parse-next ] 2curry attempt-all ] 1parser ;
+! Private parser-specific words
 
 : p-balanced? ( vector -- ? ) 0 swap [ dup V{ } = not pick 0 >= and ] [ unclip-last { { 40 [ [ 1 + ] dip ] } { 41 [ [ 1 - ] dip ] } [ drop ] } case ] while drop 0 = ;
 
-: bal ( -- parser ) [ swap dup length [1,b] trap [ [ swap cut* dup p-balanced? [ parse-error ] unless v2str swap ] dip parse-next ] 2curry attempt-all ] 1parser ;
-
 : (cancel) ( -- ) t parse-canceled set-global parse-error ;
+
+: (succeed) ( quot ast vector node -- ast vector ) [ parse-next-raw ] [ drop (succeed) ] recover ; 
+
+: succeed ( -- parser ) [ (succeed) ] 1parser ;
+
+: (break) ( vector string -- string vector ) "" -rot [ [ unclip-last ] dip 2dup member? not ] [ swapd [ suffix ] 2dip ] while drop suffix ;
+
+
+! Vocabulary
+
+: arb ( -- parser ) [ swap dup length [0,b) trap [ [ swap cut* v2str swap ] dip parse-next ] 2curry attempt-all ] 1parser ;
+
+: bal ( -- parser ) [ swap dup length [1,b] trap [ [ swap cut* dup p-balanced? [ parse-error ] unless v2str swap ] dip parse-next ] 2curry attempt-all ] 1parser ;
 
 : cancel ( -- parser ) [ (cancel) ] 1parser ;
 
@@ -78,23 +109,13 @@ SYMBOL: parse-canceled
 
 : rest ( -- parser ) [ [ v2str V{ } ] dip parse-next ] 1parser ;
 
-: (succeed) ( quot ast vector node -- ast vector ) [ parse-next-raw ] [ drop (succeed) ] recover ; 
-
-: succeed ( -- parser ) [ (succeed) ] 1parser ;
-
-: any-char ( string -- parser ) [ -rot [ unclip-last rot [ member? ] [ drop 1string swap ] [ parse-error ] smart-if ] dip parse-next ] curry >quotation 1parser ;
+: any-char ( string -- parser ) [ -rot [ unclip-last rot [ member? ] [ drop 1string swap ] [ parse-error ] smart-if ] dip parse-next ] 1curser ;
 
 : arbno ( parser -- parser ) min-arrow [ 1vector dup ] [ to>> ] bi [ rot ] dip [ arrow boa ] keep sons>> [ push ] keep suffix parser boa ;
 
-: (break) ( vector string -- string vector ) "" -rot [ [ unclip-last ] dip 2dup member? not ] [ swapd [ suffix ] 2dip ] while drop suffix ;
+: break ( string -- parser ) [ swap [ (break) ] dip parse-next ] 1curser ;
 
-: break ( string -- parser ) [ swap [ (break) ] dip parse-next ] curry >quotation 1parser ;
-
-: 1token ( string -- parser ) [ swapd str2v dup [ length cut* ] dip [ [ = ] 2all? ] keep swap [ parse-error ] unless v2str trap parse-next ] curry >quotation 1parser ; 
-
-: parse-arrow ( parser -- arrow ) arrow new swap >>effect ;
-
-: copy-end ( parser -- parser node ) dup out>> first to>> ;
+: 1token ( string -- parser ) [ swapd str2v dup [ length cut* ] dip [ [ = ] 2all? ] keep swap [ parse-error ] unless v2str trap parse-next ] 1curser ; 
 
 : | ( parser parser -- parser ) end-node [ arrow boa ] curry bi@ 2vector dup parser boa ;
 
@@ -104,8 +125,6 @@ SYMBOL: parse-canceled
     [ [ copy-end nip ] dip [ [ first2 2swap 2drop ] curry dip parse-next-raw ] curry >quotation 1son [ >>sons drop ] keep ] ! Get and set the parsing state back
     [ [ in>> ] dip [ [ pick dup . ] dip [ push ] keep [ over ] dip push parse-next-raw ] curry >quotation node new [ arrow boa 1vector ] keep rot >>sons drop ] ! Get and set the parsing state back
     2bi swap parser boa ;
-
-: (parse) ( quot vector parser -- ast vector ) in>> [ parse-null ] 2dip parse-unfold ;
 
 : parse ( string parser -- ast ) [ str2v [ ] swap ] dip f parse-canceled set-global (parse) drop dup 1vector? [ first ] when ;
 
