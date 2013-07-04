@@ -25,8 +25,6 @@ DEFER: parse-next
 
 SYMBOL: parse-canceled
 
-<PRIVATE
-
 ! Private general-use tool-words
 
 : str2v ( string -- vector ) >vector reverse ;
@@ -95,7 +93,8 @@ SYMBOL: parse-canceled
 
 : (break) ( vector string -- string vector ) "" -rot [ [ unclip-last ] dip 2dup member? not ] [ swapd [ suffix ] 2dip ] while drop suffix ;
 
-PRIVATE>
+: (breakx) ( quot ast ast vector node string n -- ast vector ) [ 0 = [ parse-error ] when swap [ (break) ] dip [ append ] 2dip ] 2keep
+    [ 2drop parse-next ] [ drop 1 - [ [ pop suffix ] keep ] 3dip (breakx) ] recover ;
 
 ! Vocabulary
 
@@ -116,6 +115,8 @@ PRIVATE>
 : arbno ( parser -- parser ) min-arrow [ 1vector dup ] [ to>> ] bi [ rot ] dip [ arrow boa ] keep sons>> [ push ] keep suffix parser boa ;
 
 : break ( string -- parser ) [ swap [ (break) ] dip parse-next ] 1curser ;
+
+: breakx ( string -- parser ) [ [ "" ] 3dip pick over [ member? ] curry count (breakx) ] 1curser ;
 
 : 1token ( string -- parser ) [ swapd str2v dup [ length cut* ] dip [ [ = ] 2all? ] keep swap [ parse-error ] unless v2str trap parse-next ] 1curser ; 
 
