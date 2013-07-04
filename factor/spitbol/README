@@ -1,0 +1,30 @@
+Here is a tool (or the beginning of it) to generate parsers.
+
+It is based on both peg parsers (http://cs.factorcode.org/content/vocab-peg.html) and Spitbol patterns (http://www.infeig.unige.ch/support/ada/gnatlb/g-spipat.html, for the Ada port), and is meant to cumulate their respective flexibilities.
+
+Features :
+
+Spitbol name    -> Factor name
+
+Arb             -> arb
+Bal             -> bal
+Cancel          -> cancel
+Fail            -> fail
+Fence           -> fence
+Rest            -> rest
+Any             -> any-char
+Arbno           -> arbno
+Break           -> break
+(space)         -> &
+|               -> |
+
+Ada name        -> Factor name
+
+1token          -> 1token
+ensure          -> ensure
+action          -> action
+
+
+Use the above word to buil your parser, in peg style, then use the parse words to apply it to a string. Example of how to build a parser :
+
+.*jour Mo*.*$ -> arb "jour M" 1token & "o" 1token arbno & rest &
