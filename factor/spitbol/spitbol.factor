@@ -25,6 +25,7 @@ DEFER: parse-next
 
 SYMBOL: parse-canceled
 
+<PRIVATE
 
 ! Private general-use tool-words
 
@@ -94,6 +95,7 @@ SYMBOL: parse-canceled
 
 : (break) ( vector string -- string vector ) "" -rot [ [ unclip-last ] dip 2dup member? not ] [ swapd [ suffix ] 2dip ] while drop suffix ;
 
+PRIVATE>
 
 ! Vocabulary
 
