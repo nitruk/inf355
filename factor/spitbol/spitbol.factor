@@ -1,6 +1,6 @@
 ! Copyright (C) 2013 Aurélien Martin
 ! See http://factorcode.org/license.txt for BSD license.
-USING: kernel io sequences ascii math alien.syntax vectors quotations math.ranges accessors continuations strings generalizations arrays prettyprint backtrack ;
+USING: kernel io sequences ascii math alien.syntax vectors quotations math.ranges accessors continuations strings generalizations arrays prettyprint combinators namespaces combinators.short-circuit ;
 IN: spitbol
 
 CONSTANT: parse-null ;
@@ -27,6 +27,8 @@ TUPLE: arrow { effect inner-arrow } { to node } ;
 
 : quap ( x y z t -- t z y x ) 2swap [ swap ] 2bi@ ;
 
+: 1vector? ( x -- ? ) { [ vector? ] [ length 1 = ] } 1&& ;
+
 : 2vector ( x y -- vector ) V{ } 2sequence ;
 
 : 4curry ( a b c d quot -- quot ) 2curry 2curry ; inline
@@ -35,13 +37,15 @@ DEFER: (parse)
 
 DEFER: parse-next
 
+SYMBOL: parse-canceled
+
 : uber-seq ( seq -- seq ) dup V{ } = [ unclip dupd 2vector [ uber-seq ] dip prefix ] unless ;
 
-: ast-combine ( ast ast -- ast ) over parse-null = [ nip ] [ [ dup vector? [ 1vector ] unless ] dip suffix ] if ;
+: ast-combine ( ast ast -- ast ) over parse-null = [ nip ] [ dup parse-null = [ drop ] [ [ dup vector? [ 1vector ] unless ] dip suffix ] if ] if ;
 
-: parse-unfold ( quot ast vector seq -- ast vector ) quap [ quap [ to>> ] [ effect>> ] bi dup quotation?
+: parse-unfold ( quot ast vector seq -- ast vector ) parse-canceled get-global [ parse-error ] when quap [ quap [ to>> ] [ effect>> ] bi dup quotation?
    [ call( quot ast vector node -- ast vector ) ]
-   [ swapd [ [ over [ 2swap ] 2dip parse-null = [ [ 1vector ] 2dip ] when parse-next ] 3curry ] 2dip (parse) ]
+   [ swapd [ [ over [ 2swap ] 2dip parse-null = [ [ dup { [ 1vector? ] [ parse-null = ] } 1|| [ 1vector ] unless ] 2dip ] when parse-next ] 3curry ] 2dip (parse) ]
    if 2vector ] 3curry attempt-all first2 ;
 
 : parse-next-raw ( quot ast vector node -- ast vector ) [ action>> ] [ sons>> ] bi swapd [ call( ast -- ast ) ] 2dip parse-unfold ;
@@ -52,9 +56,27 @@ DEFER: parse-next
 
 : 1parser ( inner-arrow -- parser ) end-node arrow boa 1vector dup parser boa ;
 
-: arb ( -- parser ) [ swap dup length [0,b) amb trap [ swap cut* v2str dup print swap ] dip parse-next ] 1parser ;
+: arb ( -- parser ) [ swap dup length [0,b) trap [ [ swap cut* v2str swap ] dip parse-next ] 2curry attempt-all ] 1parser ;
 
-: 1token ( string -- parser ) [ swapd str2v dup [ length cut* ] dip [ [ = ] 2all? ] keep swap [ fail ] unless v2str trap parse-next ] curry >quotation 1parser ; 
+: p-balanced? ( vector -- ? ) 0 swap [ dup V{ } = not pick 0 >= and ] [ unclip-last { { 40 [ [ 1 + ] dip ] } { 41 [ [ 1 - ] dip ] } [ drop ] } case ] while drop 0 = ;
+
+: bal ( -- parser ) [ swap dup length [1,b] trap [ [ swap cut* dup p-balanced? [ parse-error ] unless v2str swap ] dip parse-next ] 2curry attempt-all ] 1parser ;
+
+: (cancel) ( -- ) t parse-canceled set-global parse-error ;
+
+: cancel ( -- parser ) [ (cancel) ] 1parser ;
+
+: fail ( -- parser ) [ parse-error ] 1parser ;
+
+: fence ( -- parser ) [ { t f } [ [ parse-next-raw ] [ (cancel) ] if ] attempt-all ] 1parser ;
+
+: rest ( -- parser ) [ [ v2str V{ } ] dip parse-next ] 1parser ;
+
+: (succeed) ( quot ast vector node -- ast vector ) [ parse-next-raw ] [ drop (succeed) ] recover ; 
+
+: succeed ( -- parser ) [ (succeed) ] 1parser ;
+
+: 1token ( string -- parser ) [ swapd str2v dup [ length cut* ] dip [ [ = ] 2all? ] keep swap [ parse-error ] unless v2str trap parse-next ] curry >quotation 1parser ; 
 
 : min-arrow ( -- arrow ) [ parse-next-raw ] end-node arrow boa ;
 
@@ -68,6 +90,7 @@ DEFER: parse-next
 
 : (parse) ( quot vector parser -- ast vector ) in>> [ parse-null ] 2dip parse-unfold ;
 
-: parse ( string parser -- ast ) [ str2v [ ] swap ] dip (parse) drop ;
+: parse ( string parser -- ast ) [ str2v [ ] swap ] dip f parse-canceled set-global (parse) drop dup 1vector? [ first ] when ;
 
 : action ( parser quot: ( ast -- ast ) -- parser ) [ copy-end dup action>> ] dip compose >quotation >>action drop ;
+
