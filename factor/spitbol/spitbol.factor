@@ -69,6 +69,8 @@ TUPLE: parser { in vector } { out vector } ;
 
     : 1curser ( elt quot -- parser ) curry >quotation 1parser ;
 
+    : force-back ( quot ast vector node -- ast vector ) drop [ 2drop parse-failed ] dip ;
+
 
     ! Private core-words
 
@@ -76,17 +78,20 @@ TUPLE: parser { in vector } { out vector } ;
 
     : ast-combine ( ast ast -- ast ) over parse-null = [ nip ] [ dup parse-null = [ drop ] [ [ dup vector? [ 1vector ] unless ] dip suffix ] if ] if ;
 
+    : parse-module ( quot ast vector node parser -- ast vector )
+       swapd [ [ over [ 2swap ] 2dip parse-null = [ [ dup { [ 1vector? ] [ parse-null = ] } 1|| [ 1vector ] unless ] 2dip ] when parse-next ] 3curry ] 2dip (parse) ;
+
     : parse-unfold ( quot ast vector seq -- ast vector ) parse-check quap [ quap [ to>> ] [ effect>> ] bi dup quotation?
-       [ call( quot ast vector node -- ast vector ) ]
-       [ swapd [ [ over [ 2swap ] 2dip parse-null = [ [ dup { [ 1vector? ] [ parse-null = ] } 1|| [ 1vector ] unless ] 2dip ] when parse-next ] 3curry ] 2dip (parse) ]
-       if 2vector ] 3curry attempt-all first2 ;
+       [ call( quot ast vector node -- ast vector ) ] [ parse-module ] if 2vector ] 3curry attempt-all first2 ;
 
     : parse-next-raw ( quot ast vector node -- ast vector ) [ action>> ] [ sons>> ] bi swapd [ call( ast -- ast ) ] 2dip parse-unfold ;
 
-    : parse-next-not ( quot ast vector node -- ast vector ) sons>> first [ to>> ] [ effect>> ] bi
+    : parse-next ( quot ast ast vector node -- ast vector ) [ ast-combine ] 2dip parse-next-raw ;
+
+    : parse-next-not ( quot ast vector node -- ast vector ) parse-check sons>> first [ to>> ] [ effect>> ] bi
        swapd [ ] -rot [ (parse) ] 2keep drop nip swap parse-failed = [ swap parse-next-raw ] [ parse-error ] if ;
 
-    : parse-next ( quot ast ast vector node -- ast vector ) [ ast-combine ] 2dip parse-next-raw ;
+    : parse-next-fence ( quot ast vector seq -- ast vector ) parse-check sons>> first [ to>> ] [ effect>> ] bi parse-module over parse-failed = [ parse-error ] when ;
 
     : (parse) ( quot vector parser -- ast vector ) in>> [ parse-null ] 2dip parse-unfold ;
 
@@ -108,6 +113,14 @@ TUPLE: parser { in vector } { out vector } ;
 
     ! Vocabulary
 
+    ! Arrow effect : ( quot ast vector node -- ast vector )
+
+    : 1token ( string -- parser ) [ swapd str2v dup [ length cut* ] dip [ [ = ] 2all? ] keep swap [ parse-error ] unless v2str trap parse-next ] 1curser ; 
+
+    : | ( parser parser -- parser ) end-node [ arrow boa ] curry bi@ 2vector dup parser boa ;
+
+    : & ( parser parser -- parser ) 1son [ node new [ 1vectrow ] keep ] dip [ >>sons drop ] keep parser boa ;
+
     : arb ( -- parser ) [ swap dup length [0,b) trap [ [ swap cut* v2str swap ] dip parse-next ] 2curry attempt-all ] 1parser ;
 
     : bal ( -- parser ) [ swap dup length [1,b] trap [ [ swap cut* dup p-balanced? [ parse-error ] unless v2str swap ] dip parse-next ] 2curry attempt-all ] 1parser ;
@@ -128,18 +141,14 @@ TUPLE: parser { in vector } { out vector } ;
 
     : breakx ( string -- parser ) [ [ "" ] 3dip pick over [ member? ] curry count (breakx) ] 1curser ;
 
-    : 1token ( string -- parser ) [ swapd str2v dup [ length cut* ] dip [ [ = ] 2all? ] keep swap [ parse-error ] unless v2str trap parse-next ] 1curser ; 
-
-    : | ( parser parser -- parser ) end-node [ arrow boa ] curry bi@ 2vector dup parser boa ;
-
-    : & ( parser parser -- parser ) 1son [ node new [ 1vectrow ] keep ] dip [ >>sons drop ] keep parser boa ;
+    : fenceno ( parser -- parser ) [ [ parse-next-raw ] [ drop force-back ] recover ] 1parser & 1son node new over >>sons [ parse-next-fence ] swap 1vectrow swap parser boa ; 
 
     : ensure ( parser -- parser ) V{ } ! A recipient for parsing state backup
         [ [ copy-end nip ] dip [ [ first2 2swap 2drop ] curry dip parse-next-raw ] curry >quotation 1son [ >>sons drop ] keep ] ! Get and set the parsing state back
         [ [ in>> ] dip [ [ pick ] dip [ push ] keep [ over ] dip push parse-next-raw ] curry >quotation node new [ 1vectrow ] keep rot >>sons drop ] ! Get and set the parsing state back
         2bi swap parser boa ;
 
-    : ensure-not ( parser -- parser ) [ drop [ 2drop parse-failed ] dip ] 1parser | 1son node new over >>sons [ parse-next-not ] swap 1vectrow swap parser boa ; 
+    : ensure-not ( parser -- parser ) [ force-back ] 1parser | 1son node new over >>sons [ parse-next-not ] swap 1vectrow swap parser boa ; 
 
     : parse ( string parser -- ast ) [ str2v [ ] swap ] dip f parse-canceled set-global (parse) drop dup 1vector? [ first ] when ;
 
