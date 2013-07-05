@@ -106,7 +106,9 @@ SYMBOL: parse-canceled
 
 : succeed ( -- parser ) [ (succeed) ] 1parser ;
 
-: (break) ( vector string -- string vector ) "" -rot [ [ unclip-last ] dip 2dup member? not ] [ swapd [ suffix ] 2dip ] while drop suffix ;
+: til-cond ( vector string cond -- string vector ) [ "" ] 3dip [ [ unclip-last ] dip 2dup ] swap compose [ swapd [ suffix ] 2dip ] while drop suffix ; inline
+
+: (break) ( vector string -- string vector ) [ member? not ] til-cond ;
 
 : (breakx) ( quot ast ast vector node string n -- ast vector ) [ 0 = [ parse-error ] when swap [ (break) ] dip [ append ] 2dip ] 2keep
     [ 2drop parse-next ] [ drop 1 - [ [ pop suffix ] keep ] 3dip (breakx) ] recover ;
@@ -114,6 +116,8 @@ SYMBOL: parse-canceled
 : force-back ( quot ast vector node -- ast vector ) drop [ 2drop parse-failed ] dip ;
 
 : 1cond ( string cond -- vector ) [ rot [ [ unclip-last ] 2dip [ drop 1string swap ] [ parse-error ] smart-if ] dip parse-next ] 2curser ;
+
+: (nspan) ( vector string -- string vector ) [ member? ] til-cond ;
 
 ! Vocabulary
 
@@ -150,6 +154,10 @@ SYMBOL: parse-canceled
 : len ( n -- parser ) [ swapd cut* v2str trap parse-next ] 1curser ;
 
 : not-any ( string -- parser ) [ member? not ] 1cond ;
+
+: nspan ( string -- parser ) [ swap [ (nspan) ] dip parse-next ] 1curser ;
+
+: span ( string -- parser ) [ swap [ [ dup last ] dip [ member? [ parse-error ] unless ] keep (nspan) ] dip parse-next ] 1curser ;
 
 : ensure ( parser -- parser ) V{ } ! A recipient for parsing state backup
 [ [ copy-end nip ] dip [ [ first2 2swap 2drop ] curry dip parse-next-raw ] curry >quotation 1son [ >>sons drop ] keep ] ! Get and set the parsing state back
