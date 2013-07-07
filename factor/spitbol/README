@@ -12,9 +12,20 @@ Cancel          -> cancel
 Fail            -> fail
 Fence           -> fence
 Rest            -> rest
-Any             -> any-char
-Arbno           -> arbno
-Break           -> break
+Any(S)          -> any-char
+Arbno(P)        -> arbno
+Break(S)        -> break
+BreakX(S)       -> breakx
+Fence(P)        -> fenceno
+Len(N)          -> len
+NotAny(S)       -> not-any
+NSpan(S)        -> nspan
+Pos(N)          -> pos
+RPos(N)         -> rpos
+RTab(N)         -> rtab
+Tab(N)          -> tab
+Span(S)         -> span
+
 (space)         -> &
 |               -> |
 
@@ -22,6 +33,7 @@ Ada name        -> Factor name
 
 1token          -> 1token
 ensure          -> ensure
+ensure-not      -> ensure-not
 action          -> action
 
 

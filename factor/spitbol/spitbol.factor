@@ -26,6 +26,8 @@ DEFER: parse-next
 
 SYMBOL: parse-canceled
 
+SYMBOL: parse-length
+
 ! Private general-use tool-words
 
 : str2v ( string -- vector ) >vector reverse ;
@@ -113,11 +115,21 @@ SYMBOL: parse-canceled
 : (breakx) ( quot ast ast vector node string n -- ast vector ) [ 0 = [ parse-error ] when swap [ (break) ] dip [ append ] 2dip ] 2keep
     [ 2drop parse-next ] [ drop 1 - [ [ pop suffix ] keep ] 3dip (breakx) ] recover ;
 
+: (len) ( quot ast vector node n -- ast vector ) swapd cut* v2str trap parse-next ;
+
 : force-back ( quot ast vector node -- ast vector ) drop [ 2drop parse-failed ] dip ;
 
 : 1cond ( string cond -- vector ) [ rot [ [ unclip-last ] 2dip [ drop 1string swap ] [ parse-error ] smart-if ] dip parse-next ] 2curser ;
 
 : (nspan) ( vector string -- string vector ) [ member? ] til-cond ;
+
+: pos-extract ( vector node calc -- vector node y ) [ over length ] dip call( x -- y ) ;
+
+: pos-reverse ( x y -- z ) parse-length get rot - - ;
+
+: (rpos) ( n cond -- parser ) curry [ pos-extract 0 = [ parse-error ] unless parse-next-raw ] 1curser ;
+
+: (rtab) ( n cond -- parser ) curry [ pos-extract (len) ] 1curser ;
 
 ! Vocabulary
 
@@ -151,13 +163,21 @@ SYMBOL: parse-canceled
 
 : fenceno ( parser -- parser ) [ [ parse-next-raw ] [ drop force-back ] recover ] 1parser & 1son node new over >>sons [ parse-next-fence ] swap 1vectrow swap parser boa ; 
 
-: len ( n -- parser ) [ swapd cut* v2str trap parse-next ] 1curser ;
+: len ( n -- parser ) [ (len) ] 1curser ;
 
 : not-any ( string -- parser ) [ member? not ] 1cond ;
 
 : nspan ( string -- parser ) [ swap [ (nspan) ] dip parse-next ] 1curser ;
 
 : span ( string -- parser ) [ swap [ [ dup last ] dip [ member? [ parse-error ] unless ] keep (nspan) ] dip parse-next ] 1curser ;
+
+: pos ( n -- parser ) [ pos-reverse ] (rpos) ;
+
+: rpos ( n -- parser ) [ - ] (rpos) ;
+
+: tab ( n -- parser ) [ pos-reverse ] (rtab) ;
+
+: rtab ( n -- parser ) [ - ] (rtab) ;
 
 : ensure ( parser -- parser ) V{ } ! A recipient for parsing state backup
 [ [ copy-end nip ] dip [ [ first2 2swap 2drop ] curry dip parse-next-raw ] curry >quotation 1son [ >>sons drop ] keep ] ! Get and set the parsing state back
@@ -166,7 +186,7 @@ SYMBOL: parse-canceled
 
 : ensure-not ( parser -- parser ) [ force-back ] 1parser | 1son node new over >>sons [ parse-next-not ] swap 1vectrow swap parser boa ; 
 
-: parse ( string parser -- ast ) [ str2v [ ] swap ] dip f parse-canceled set-global (parse) drop dup 1vector? [ first ] when ;
+: parse ( string parser -- ast ) [ str2v [ ] swap ] dip f parse-canceled set-global over length parse-length [ (parse) ] with-variable drop dup 1vector? [ first ] when ;
 
 : action ( parser quot: ( ast -- ast ) -- parser ) [ copy-end dup action>> ] dip compose >quotation >>action drop ;
 
