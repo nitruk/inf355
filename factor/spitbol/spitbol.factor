@@ -48,6 +48,10 @@ SYMBOL: parse-length
 
 : 2over ( x y z -- x y z x y ) pick pick swap ;
 
+: extract ( x/seq -- x ) [ vector? ] [ first ] smart-when ;
+
+: extract-inject ( quot -- quot ) [ extract ] swap compose ;
+
 
 ! Private parsers-related tool-words
 
@@ -72,6 +76,8 @@ SYMBOL: parse-length
 : 1curser ( elt quot -- parser ) curry >quotation 1parser ;
 
 : 2curser ( elt elt quot -- parser ) 2curry >quotation 1parser ;
+
+: extract-1curser ( elt quot -- parser ) extract-inject 1curser ;
 
 
 ! Private core-words
@@ -108,7 +114,7 @@ SYMBOL: parse-length
 
 : succeed ( -- parser ) [ (succeed) ] 1parser ;
 
-: til-cond ( vector string cond -- string vector ) [ "" ] 3dip [ [ unclip-last ] dip 2dup ] swap compose [ swapd [ suffix ] 2dip ] while drop suffix ; inline
+: til-cond ( vector string cond -- string vector ) [ "" ] 3dip [ [ unclip-last ] dip 2dup ] swap compose [ [ over empty? not ] dip [ parse-null swap f ] if ] curry [ swapd [ suffix ] 2dip ] while drop [ parse-null = ] [ suffix ] [ drop ] smart-if ; inline
 
 : (break) ( vector string -- string vector ) [ member? not ] til-cond ;
 
@@ -119,7 +125,7 @@ SYMBOL: parse-length
 
 : force-back ( quot ast vector node -- ast vector ) drop [ 2drop parse-failed ] dip ;
 
-: 1cond ( string cond -- vector ) [ rot [ [ unclip-last ] 2dip [ drop 1string swap ] [ parse-error ] smart-if ] dip parse-next ] 2curser ;
+: 1cond ( string cond -- vector ) extract-inject [ rot [ [ unclip-last ] 2dip [ drop 1string swap ] [ parse-error ] smart-if ] dip parse-next ] 2curser ;
 
 : (nspan) ( vector string -- string vector ) [ member? ] til-cond ;
 
@@ -127,9 +133,9 @@ SYMBOL: parse-length
 
 : pos-reverse ( x y -- z ) parse-length get rot - - ;
 
-: (rpos) ( n cond -- parser ) curry [ pos-extract 0 = [ parse-error ] unless parse-next-raw ] 1curser ;
+: (rpos) ( n cond -- parser ) extract-inject curry [ pos-extract 0 = [ parse-error ] unless parse-next-raw ] 1curser ;
 
-: (rtab) ( n cond -- parser ) curry [ pos-extract (len) ] 1curser ;
+: (rtab) ( n cond -- parser ) extract-inject curry [ pos-extract (len) ] 1curser ;
 
 ! Vocabulary
 
@@ -157,19 +163,19 @@ SYMBOL: parse-length
 
 : arbno ( parser -- parser ) min-arrow [ 1vector dup ] [ to>> ] bi [ rot ] dip [ arrow boa ] keep sons>> [ push ] keep suffix parser boa ;
 
-: break ( string -- parser ) [ swap [ (break) ] dip parse-next ] 1curser ;
+: break ( string -- parser ) [ swap [ (break) ] dip parse-next ] extract-1curser ;
 
-: breakx ( string -- parser ) [ [ "" ] 3dip pick over [ member? ] curry count (breakx) ] 1curser ;
+: breakx ( string -- parser ) [ [ "" ] 3dip pick over [ member? ] curry count (breakx) ] extract-1curser ;
 
 : fenceno ( parser -- parser ) [ [ parse-next-raw ] [ drop force-back ] recover ] 1parser & 1son node new over >>sons [ parse-next-fence ] swap 1vectrow swap parser boa ; 
 
-: len ( n -- parser ) [ (len) ] 1curser ;
+: len ( n -- parser ) [ (len) ] extract-1curser ;
 
 : not-any ( string -- parser ) [ member? not ] 1cond ;
 
-: nspan ( string -- parser ) [ swap [ (nspan) ] dip parse-next ] 1curser ;
+: nspan ( string -- parser ) [ swap [ (nspan) ] dip parse-next ] extract-1curser ;
 
-: span ( string -- parser ) [ swap [ [ dup last ] dip [ member? [ parse-error ] unless ] keep (nspan) ] dip parse-next ] 1curser ;
+: span ( string -- parser ) [ swap [ [ dup last ] dip [ member? [ parse-error ] unless ] keep (nspan) ] dip parse-next ] extract-1curser ;
 
 : pos ( n -- parser ) [ pos-reverse ] (rpos) ;
 
