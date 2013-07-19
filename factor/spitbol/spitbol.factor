@@ -141,7 +141,9 @@ SYMBOL: parse-length
 
 ! Arrow effect : ( quot ast vector node -- ast vector )
 
-: 1token ( string -- parser ) [ swapd str2v dup [ length cut* ] dip [ [ = ] 2all? ] keep swap [ parse-error ] unless v2str trap parse-next ] 1curser ; 
+: token ( string -- parser ) [ swapd str2v dup [ length cut* ] dip [ [ = ] 2all? ] keep swap [ parse-error ] unless v2str trap parse-next ] 1curser ; 
+
+: 1token ( string -- parser ) 1string token ;
 
 : | ( parser parser -- parser ) end-node [ arrow boa ] curry bi@ 2vector dup parser boa ;
 
@@ -192,7 +194,12 @@ SYMBOL: parse-length
 
 : ensure-not ( parser -- parser ) [ force-back ] 1parser | 1son node new over >>sons [ parse-next-not ] swap 1vectrow swap parser boa ; 
 
+: exactly-n ( parser n -- parser ) dup 0 > t assert= [ dup end-node arrow boa 1vector dup swapd ] dip [ 1 - dup 0 = not ] [ [ dupd node new swap >>sons arrow boa 1vector ] dip ] while drop nip swap parser boa ;
+
+: at-most-n ( parser n -- parser ) dup 0 > t assert= [ dup end-node [ arrow boa ] [ [ parse-next-raw ] swap arrow boa ] bi [ 2vector dup swapd ] keep ] dip [ 1 - dup 0 = not ] [ [ dupd node new swap >>sons arrow boa ] 2dip [ [ 2vector ] keep ] dip ] while 2drop nip swap parser boa ;
+
+: at-least-n ( parser n -- parser ) [ exactly-n ] curry [ arbno ] bi & ;
+
 : parse ( string parser -- ast ) [ str2v [ ] swap ] dip f parse-canceled set-global over length parse-length [ (parse) ] with-variable drop dup 1vector? [ first ] when ;
 
 : action ( parser quot: ( ast -- ast ) -- parser ) [ copy-end dup action>> ] dip compose >quotation >>action drop ;
-
