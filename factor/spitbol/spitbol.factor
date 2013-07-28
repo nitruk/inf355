@@ -1,6 +1,6 @@
 ! Copyright (C) 2013 Aurélien Martin
 ! See http://factorcode.org/license.txt for BSD license.
-USING: kernel io sequences ascii math alien.syntax vectors quotations math.ranges accessors continuations strings generalizations arrays prettyprint combinators namespaces combinators.short-circuit combinators.smart ;
+USING: kernel io sequences ascii math alien.syntax vectors quotations math.ranges accessors continuations strings generalizations arrays prettyprint combinators namespaces combinators.short-circuit combinators.smart make ;
 IN: spitbol
 
 CONSTANT: parse-null ;
@@ -145,9 +145,29 @@ SYMBOL: parse-length
 
 : 1token ( string -- parser ) 1string token ;
 
-: | ( parser parser -- parser ) end-node [ arrow boa ] curry bi@ 2vector dup parser boa ;
+: seq ( sequence -- parser ) dup empty? f assert= unclip-last 1son [ [ over empty? not ] [ [ unclip-last node new [ 1vectrow ] keep ] dip >>sons drop ] while ] keep parser boa nip ;
 
-: & ( parser parser -- parser ) 1son [ node new [ 1vectrow ] keep ] dip [ >>sons drop ] keep parser boa ;
+: 2seq ( parser parser -- parser ) 2array seq ;
+
+: 3seq ( parser parser parser -- parser ) 3array seq ;
+
+: 4seq ( parser parser parser parser -- parser ) 4array seq ;
+
+: & ( parser parser -- parser ) 2seq ;
+
+: choice ( sequence -- parser ) >vector end-node [ arrow boa ] curry map dup parser boa ;
+
+: seq* ( quot -- parser ) { } make seq ; inline 
+
+: 2choice ( parser parser -- parser ) 2array choice ;
+
+: 3choice ( parser parser parser -- parser ) 3array choice ;
+
+: 4choice ( parser parser parser parser -- parser ) 4array choice ;
+
+: | ( parser parser -- parser ) 2choice ;
+
+: choice* ( quot -- parser ) { } make choice ; inline 
 
 : arb ( -- parser ) [ swap dup length [0,b) trap [ [ swap cut* v2str swap ] dip parse-next ] 2curry attempt-all ] 1parser ;
 
