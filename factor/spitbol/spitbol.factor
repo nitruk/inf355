@@ -56,6 +56,8 @@ SYMBOL: parse-length
 
 : newvect ( -- vect ) V{ } clone ;
 
+: open-up ( elt -- elt ) dup 1vector? [ first ] when ;
+
 
 ! Private parsers-related tool-words
 
@@ -88,7 +90,7 @@ SYMBOL: parse-length
 
 : parse-check ( -- ) parse-canceled get-global [ parse-error ] when ;
 
-: ast-combine ( ast ast -- ast ) over parse-null = [ nip ] [ dup parse-null = [ drop ] [ [ dup vector? [ 1vector ] unless ] dip suffix ] if ] if ;
+: ast-combine ( ast ast -- ast ) over parse-null = [ nip ] [ dup parse-null = [ drop ] [ open-up [ dup vector? [ 1vector ] unless ] dip suffix ] if ] if ;
 
 : parse-module ( quot ast vector node parser -- ast vector )
     swapd [ [ over [ 2swap ] 2dip parse-null = [ [ dup { [ 1vector? ] [ parse-null = ] } 1|| [ 1vector ] unless ] 2dip ] when parse-next ] 3curry ] 2dip (parse) ;
@@ -245,7 +247,7 @@ SYMBOL: parse-length
 
 : range-pattern ( string -- parser ) dup first 94 = [ 1 tail (range-pattern) ensure-not any-char & ] [ (range-pattern) ] if  ;
 
-: parse ( string parser -- ast ) [ str2v [ ] swap ] dip f parse-canceled set-global over length parse-length [ (parse) ] with-variable drop dup 1vector? [ first ] when ;
+: parse ( string parser -- ast ) [ str2v [ ] swap ] dip f parse-canceled set-global over length parse-length [ (parse) ] with-variable drop open-up ;
 
 : parse-nostart ( string parser -- ast ) over length [0,b] trap [ rot tail swap parse ] 2curry attempt-all ;
 
