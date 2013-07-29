@@ -1,6 +1,6 @@
 ! Copyright (C) 2013 Aurélien Martin
 ! See http://factorcode.org/license.txt for BSD license.
-USING: kernel io sequences ascii math alien.syntax vectors quotations math.ranges accessors continuations strings generalizations arrays prettyprint combinators namespaces combinators.short-circuit combinators.smart make ;
+USING: kernel io sequences ascii math alien.syntax vectors quotations math.ranges accessors continuations strings generalizations arrays prettyprint combinators namespaces combinators.short-circuit combinators.smart make math.parser ;
 IN: spitbol
 
 CONSTANT: parse-null ;
@@ -23,6 +23,8 @@ DEFER: (parse)
 DEFER: parse-next-raw
 
 DEFER: parse-next
+
+DEFER: any-from
 
 SYMBOL: parse-canceled
 
@@ -52,6 +54,8 @@ SYMBOL: parse-length
 
 : extract-inject ( quot -- quot ) [ extract ] swap compose ;
 
+: newvect ( -- vect ) V{ } clone ;
+
 
 ! Private parsers-related tool-words
 
@@ -63,7 +67,7 @@ SYMBOL: parse-length
 
 : 1son ( inner-arrow -- vector ) 1arrow 1vector ; 
 
-: uber-seq ( seq -- seq ) dup V{ } = [ unclip dupd 2vector [ uber-seq ] dip prefix ] unless ;
+: uber-seq ( seq -- seq ) dup empty? [ unclip dupd 2vector [ uber-seq ] dip prefix ] unless ;
 
 : parse-arrow ( parser -- arrow ) arrow new swap >>effect ;
 
@@ -106,13 +110,15 @@ SYMBOL: parse-length
 
 ! Private parser-specific words
 
-: p-balanced? ( vector -- ? ) 0 swap [ dup V{ } = not pick 0 >= and ] [ unclip-last { { 40 [ [ 1 + ] dip ] } { 41 [ [ 1 - ] dip ] } [ drop ] } case ] while drop 0 = ;
+: (arb) ( ranging -- parser ) [ [ swap dup length ] dip call trap [ [ swap cut* v2str swap ] dip parse-next ] 2curry attempt-all ] 1curser ; inline
+
+: p-balanced? ( vector -- ? ) 0 swap [ dup empty? not pick 0 >= and ] [ unclip-last { { 40 [ [ 1 + ] dip ] } { 41 [ [ 1 - ] dip ] } [ drop ] } case ] while drop 0 = ;
 
 : (cancel) ( -- ) t parse-canceled set-global parse-error ;
 
 : (succeed) ( quot ast vector node -- ast vector ) [ parse-next-raw ] [ drop (succeed) ] recover ; 
 
-: succeed ( -- parser ) [ (succeed) ] 1parser ;
+: (arbno) ( parser -- parser ) [ min-arrow [ 1vector dup ] [ to>> ] bi [ rot ] dip [ arrow boa dup ] keep sons>> ] dip call suffix parser boa ; inline
 
 : til-cond ( vector string cond -- string vector ) [ "" ] 3dip [ [ unclip-last ] dip 2dup ] swap compose [ [ over empty? not ] dip [ parse-null swap f ] if ] curry [ swapd [ suffix ] 2dip ] while drop [ parse-null = ] [ suffix ] [ drop ] smart-if ; inline
 
@@ -136,6 +142,9 @@ SYMBOL: parse-length
 : (rpos) ( n cond -- parser ) extract-inject curry [ pos-extract 0 = [ parse-error ] unless parse-next-raw ] 1curser ;
 
 : (rtab) ( n cond -- parser ) extract-inject curry [ pos-extract (len) ] 1curser ;
+
+! '-' denotes ranges. '-' at the beginning of the pattern (or after an initial ^ when passed to range-pattern), or just after a previous range counts as itself. '-' ending the pattern is an error.
+: (range-pattern) ( string -- parser ) "" swap [ dup empty? not ] [ unclip swap dup empty? [ t ] [ unclip dup 45 = [ drop unclip swap [ [a,b] ] dip f ] [ prefix t ] if ] if [ [ suffix! ] dip ] [ [ append ] dip ] if ] while drop any-from ;
 
 ! Vocabulary
 
@@ -169,7 +178,11 @@ SYMBOL: parse-length
 
 : choice* ( quot -- parser ) { } make choice ; inline 
 
-: arb ( -- parser ) [ swap dup length [0,b) trap [ [ swap cut* v2str swap ] dip parse-next ] 2curry attempt-all ] 1parser ;
+: arb ( -- parser ) [ [0,b) ] (arb) ;
+
+! The same, being greedy
+
+: arbg ( -- parser ) [ 0 (a,b] ] (arb) ;
 
 : bal ( -- parser ) [ swap dup length [1,b] trap [ [ swap cut* dup p-balanced? [ parse-error ] unless v2str swap ] dip parse-next ] 2curry attempt-all ] 1parser ;
 
@@ -179,11 +192,19 @@ SYMBOL: parse-length
 
 : fence ( -- parser ) [ { t f } [ [ parse-next-raw ] [ (cancel) ] if ] attempt-all ] 1parser ;
 
-: rest ( -- parser ) [ [ v2str V{ } ] dip parse-next ] 1parser ;
+: rest ( -- parser ) [ [ v2str newvect ] dip parse-next ] 1parser ;
 
-: any-char ( string -- parser ) [ member? ] 1cond ;
+: succeed ( -- parser ) [ (succeed) ] 1parser ;
 
-: arbno ( parser -- parser ) min-arrow [ 1vector dup ] [ to>> ] bi [ rot ] dip [ arrow boa ] keep sons>> [ push ] keep suffix parser boa ;
+: any-char ( -- parser ) [ [ dup empty? [ parse-error ] when unclip-last swap ] dip parse-next ] 1parser ;
+
+: any-from ( string -- parser ) [ member? ] 1cond ;
+
+: arbno ( parser -- parser ) [ push ] (arbno) ;
+
+: arbnog ( parser -- parser ) [ [ pop swap ] keep [ push ] keep push ] (arbno) ;
+
+: repeat0 ( parser -- parser ) arbnog ;
 
 : break ( string -- parser ) [ swap [ (break) ] dip parse-next ] extract-1curser ;
 
@@ -207,7 +228,7 @@ SYMBOL: parse-length
 
 : rtab ( n -- parser ) [ - ] (rtab) ;
 
-: ensure ( parser -- parser ) V{ } ! A recipient for parsing state backup
+: ensure ( parser -- parser ) newvect ! A recipient for parsing state backup
 [ [ copy-end nip ] dip [ [ first2 2swap 2drop ] curry dip parse-next-raw ] curry >quotation 1son [ >>sons drop ] keep ] ! Get and set the parsing state back
 [ [ in>> ] dip [ [ pick ] dip [ push ] keep [ over ] dip push parse-next-raw ] curry >quotation node new [ 1vectrow ] keep rot >>sons drop ] ! Get and set the parsing state back
 2bi swap parser boa ;
@@ -218,8 +239,33 @@ SYMBOL: parse-length
 
 : at-most-n ( parser n -- parser ) dup 0 > t assert= [ dup end-node [ arrow boa ] [ [ parse-next-raw ] swap arrow boa ] bi [ 2vector dup swapd ] keep ] dip [ 1 - dup 0 = not ] [ [ dupd node new swap >>sons arrow boa ] 2dip [ [ 2vector ] keep ] dip ] while 2drop nip swap parser boa ;
 
-: at-least-n ( parser n -- parser ) [ exactly-n ] curry [ arbno ] bi & ;
+: at-least-n ( parser n -- parser ) [ exactly-n ] curry [ arbnog ] bi & ;
+
+: from-m-to-n ( parser m n -- parser ) [ over ] dip [ at-least-n ensure ] [ at-most-n ] 2bi* & ;
+
+: range-pattern ( string -- parser ) dup first 94 = [ 1 tail (range-pattern) ensure-not any-char & ] [ (range-pattern) ] if  ;
 
 : parse ( string parser -- ast ) [ str2v [ ] swap ] dip f parse-canceled set-global over length parse-length [ (parse) ] with-variable drop dup 1vector? [ first ] when ;
 
+: parse-nostart ( string parser -- ast ) over length [0,b] trap [ rot tail swap parse ] 2curry attempt-all ;
+
 : action ( parser quot: ( ast -- ast ) -- parser ) [ copy-end dup action>> ] dip compose >quotation >>action drop ;
+
+: (repeat1) ( parser parser -- parser ) arbnog 2seq [ first2 swap prefix ] action ;
+
+: repeat1 ( parser -- parser ) dup (repeat1) ; 
+
+: ignore ( parser -- parser ) [ drop parse-null ] action ;
+
+: list-of ( item separator -- parser ) ignore over 2seq (repeat1) ;
+
+: pack  ( begin body end -- parser ) [ ignore ] 2dip ignore 3seq ;
+
+: surrounded-by ( parser begin end -- parser ) [ token ] bi@ swapd pack ;
+
+: 'digit' ( -- parser ) [ [ unclip-last dup digit? [ parse-error ] unless swap ] dip parse-next ] 1parser [ digit> ] action ;
+
+: 'integer' ( -- parser ) 'digit' repeat1 [ 10 digits>integer ] action ;
+
+: 'string' ( -- parser ) arb "\"" dup surrounded-by ;
+
