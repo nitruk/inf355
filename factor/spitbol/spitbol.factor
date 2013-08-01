@@ -24,7 +24,13 @@ DEFER: parse-next-raw
 
 DEFER: parse-next
 
+DEFER: arbnog
+
+DEFER: 2seq
+
 DEFER: any-from
+
+DEFER: action
 
 SYMBOL: parse-canceled
 
@@ -58,6 +64,9 @@ SYMBOL: parse-length
 
 : open-up ( elt -- elt ) dup 1vector? [ first ] when ;
 
+: curry-quot ( elt quot -- quot ) curry >quotation ;
+
+: 2curry-quot ( elt elt quot -- quot ) 2curry >quotation ;
 
 ! Private parsers-related tool-words
 
@@ -79,9 +88,9 @@ SYMBOL: parse-length
 
 : min-arrow ( -- arrow ) [ parse-next-raw ] 1arrow ;
 
-: 1curser ( elt quot -- parser ) curry >quotation 1parser ;
+: 1curser ( elt quot -- parser ) curry-quot 1parser ;
 
-: 2curser ( elt elt quot -- parser ) 2curry >quotation 1parser ;
+: 2curser ( elt elt quot -- parser ) 2curry-quot 1parser ;
 
 : extract-1curser ( elt quot -- parser ) extract-inject 1curser ;
 
@@ -122,7 +131,7 @@ SYMBOL: parse-length
 
 : (arbno) ( parser -- parser ) [ min-arrow [ 1vector dup ] [ to>> ] bi [ rot ] dip [ arrow boa dup ] keep sons>> ] dip call suffix parser boa ; inline
 
-: til-cond ( vector string cond -- string vector ) [ "" ] 3dip [ [ unclip-last ] dip 2dup ] swap compose [ [ over empty? not ] dip [ parse-null swap f ] if ] curry [ swapd [ suffix ] 2dip ] while drop [ parse-null = ] [ suffix ] [ drop ] smart-if ; inline
+: til-cond ( vector string cond -- string vector ) [ "" ] 3dip [ [ unclip-last ] dip 2dup ] swap compose [ [ over empty? not ] dip [ parse-null swap f ] if ] curry [ swapd [ suffix ] 2dip ] while drop [ parse-null = not ] [ suffix ] [ drop ] smart-if ; inline
 
 : (break) ( vector string -- string vector ) [ member? not ] til-cond ;
 
@@ -145,14 +154,23 @@ SYMBOL: parse-length
 
 : (rtab) ( n cond -- parser ) extract-inject curry [ pos-extract (len) ] 1curser ;
 
+: (enforce-n-init) ( quot ast vector node n vector -- ast vector ) push parse-next-raw ;
+
+: (enforce-n-loop) ( quot ast vector node vector -- ast vector ) [ pop ] keep [ dup 0 = [ parse-error ] when 1 - ] dip push parse-next-raw ;
+
+: (enforce-n-end) ( quot ast vector node vector -- ast vector ) length 0 assert= parse-next-raw ;
+
 ! '-' denotes ranges. '-' at the beginning of the pattern (or after an initial ^ when passed to range-pattern), or just after a previous range counts as itself. '-' ending the pattern is an error.
 : (range-pattern) ( string -- parser ) "" swap [ dup empty? not ] [ unclip swap dup empty? [ t ] [ unclip dup 45 = [ drop unclip swap [ [a,b] ] dip f ] [ prefix t ] if ] if [ [ suffix! ] dip ] [ [ append ] dip ] if ] while drop any-from ;
+
+: (repeat1) ( parser parser -- parser ) arbnog 2seq [ first2 swap prefix ] action ;
+
 
 ! Vocabulary
 
 ! Arrow effect : ( quot ast vector node -- ast vector )
 
-: token ( string -- parser ) [ swapd str2v dup [ length cut* ] dip [ [ = ] 2all? ] keep swap [ parse-error ] unless v2str trap parse-next ] 1curser ; 
+: token ( string -- parser ) [ swapd str2v dup [ length cut* ] dip [ [ = ] 2all? ] keep swap [ parse-error ] unless v2str trap parse-next ] extract-1curser ; 
 
 : 1token ( string -- parser ) 1string token ;
 
@@ -181,8 +199,6 @@ SYMBOL: parse-length
 : choice* ( quot -- parser ) { } make choice ; inline 
 
 : arb ( -- parser ) [ [0,b) ] (arb) ;
-
-! The same, being greedy
 
 : arbg ( -- parser ) [ 0 (a,b] ] (arb) ;
 
@@ -231,19 +247,19 @@ SYMBOL: parse-length
 : rtab ( n -- parser ) [ - ] (rtab) ;
 
 : ensure ( parser -- parser ) newvect ! A recipient for parsing state backup
-[ [ copy-end nip ] dip [ [ first2 2swap 2drop ] curry dip parse-next-raw ] curry >quotation 1son [ >>sons drop ] keep ] ! Get and set the parsing state back
-[ [ in>> ] dip [ [ pick ] dip [ push ] keep [ over ] dip push parse-next-raw ] curry >quotation node new [ 1vectrow ] keep rot >>sons drop ] ! Get and set the parsing state back
+[ [ copy-end nip ] dip [ [ first2 2swap 2drop ] curry dip parse-next-raw ] curry-quot 1son [ >>sons drop ] keep ] ! Get and set the parsing state back
+[ [ in>> ] dip [ [ pick ] dip [ push ] keep [ over ] dip push parse-next-raw ] curry-quot node new [ 1vectrow ] keep rot >>sons drop ] ! Get and set the parsing state back
 2bi swap parser boa ;
 
 : ensure-not ( parser -- parser ) [ force-back ] 1parser | 1son node new over >>sons [ parse-next-not ] swap 1vectrow swap parser boa ; 
 
-: exactly-n ( parser n -- parser ) dup 0 > t assert= [ dup end-node arrow boa 1vector dup swapd ] dip [ 1 - dup 0 = not ] [ [ dupd node new swap >>sons arrow boa 1vector ] dip ] while drop nip swap parser boa ;
+: exactly-n ( parser n -- parser ) V{ } clone [ [ (enforce-n-init) ] curry [ extract ] swap compose curry-quot ] [ [ (enforce-n-loop) ] curry-quot ] [ [ (enforce-n-end) ] curry-quot ] tri end-node arrow boa [ node new [ arrow boa ] keep ] dip swap [ [ 2vector node new swap >>sons [ 1vectrow ] curry bi@ ] keep ] dip 3 1 mnswap >>sons drop 1vector parser boa ;
 
-: at-most-n ( parser n -- parser ) dup 0 > t assert= [ dup end-node [ arrow boa ] [ [ parse-next-raw ] swap arrow boa ] bi [ 2vector dup swapd ] keep ] dip [ 1 - dup 0 = not ] [ [ dupd node new swap >>sons arrow boa ] 2dip [ [ 2vector ] keep ] dip ] while 2drop nip swap parser boa ;
+: at-most-n ( parser n -- parser ) V{ } clone [ [ (enforce-n-init) ] curry [ extract ] swap compose curry-quot ] [ [ (enforce-n-loop) ] curry-quot ] bi min-arrow [ node new [ arrow boa ] keep ] dip swap [ [ 2vector node new swap >>sons [ 1vectrow ] curry bi@ ] keep ] dip 3 1 mnswap >>sons drop 1vector parser boa ;
 
 : at-least-n ( parser n -- parser ) [ exactly-n ] curry [ arbnog ] bi & ;
 
-: from-m-to-n ( parser m n -- parser ) [ over ] dip [ at-least-n ensure ] [ at-most-n ] 2bi* & ;
+: from-m-to-n ( parser m n -- parser ) [ over ] dip [ exactly-n ensure ] [ at-most-n ] 2bi* & ;
 
 : range-pattern ( string -- parser ) dup first 94 = [ 1 tail (range-pattern) ensure-not any-char & ] [ (range-pattern) ] if  ;
 
@@ -252,8 +268,6 @@ SYMBOL: parse-length
 : parse-nostart ( string parser -- ast ) over length [0,b] trap [ rot tail swap parse ] 2curry attempt-all ;
 
 : action ( parser quot: ( ast -- ast ) -- parser ) [ copy-end dup action>> ] dip compose >quotation >>action drop ;
-
-: (repeat1) ( parser parser -- parser ) arbnog 2seq [ first2 swap prefix ] action ;
 
 : repeat1 ( parser -- parser ) dup (repeat1) ; 
 
