@@ -288,3 +288,4 @@ SYMBOL: parse-length
 
 : 'string' ( -- parser ) arb "\"" dup surrounded-by ;
 
+: adder ( m n  vect -- parser ) [ [ [ extract ] bi@ + ] dip push parse-next-raw ] 3curry >quotation 1parser ;
