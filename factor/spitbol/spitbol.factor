@@ -1,5 +1,4 @@
-! Copyright (C) 2013 Aurélien Martin
-! See http://factorcode.org/license.txt for BSD license.
+! Copyright (C) 2013  spitbol! See http://factorcode.org/license.txt for BSD license.
 USING: kernel io sequences ascii math alien.syntax vectors quotations math.ranges accessors continuations strings generalizations arrays prettyprint combinators namespaces combinators.short-circuit combinators.smart make math.parser ;
 IN: spitbol
 
@@ -272,6 +271,8 @@ SYMBOL: parse-length
 : action ( parser quot: ( ast -- ast ) -- parser ) [ copy-end dup action>> ] dip compose >quotation >>action drop ;
 
 : repeat1 ( parser -- parser ) dup (repeat1) ; 
+
+: optional ( parser -- parser ) min-arrow [ to>> ] keep [ arrow boa ] dip 2vector dup parser boa ;
 
 : ignore ( parser -- parser ) [ drop parse-null ] action ;
 
