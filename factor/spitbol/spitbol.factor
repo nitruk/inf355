@@ -161,7 +161,7 @@ SYMBOL: parse-length
 : (enforce-n-end) ( quot ast vector node vector -- ast vector ) length 0 assert= parse-next-raw ;
 
 ! '-' denotes ranges. '-' at the beginning of the pattern (or after an initial ^ when passed to range-pattern), or just after a previous range counts as itself. '-' ending the pattern is an error.
-: (range-pattern) ( string -- parser ) "" swap [ dup empty? not ] [ unclip swap dup empty? [ t ] [ unclip dup 45 = [ drop unclip swap [ [a,b] ] dip f ] [ prefix t ] if ] if [ [ suffix! ] dip ] [ [ append ] dip ] if ] while drop any-from ;
+: in-range ( char string -- ? ) "" swap [ dup empty? not ] [ unclip swap dup empty? [ t ] [ unclip dup 45 = [ drop unclip swap [ [a,b] ] dip f ] [ prefix t ] if ] if [ [ suffix! ] dip ] [ [ append ] dip ] if ] while drop member? ;
 
 : (repeat1) ( parser parser -- parser ) arbnog 2seq [ first2 swap prefix ] action ;
 
@@ -261,7 +261,9 @@ SYMBOL: parse-length
 
 : from-m-to-n ( parser m n -- parser ) [ over ] dip [ exactly-n ensure ] [ at-most-n ] 2bi* & ;
 
-: range-pattern ( string -- parser ) dup first 94 = [ 1 tail (range-pattern) ensure-not any-char & ] [ (range-pattern) ] if  ;
+: range-pattern ( string -- parser ) [ dup first 94 = [ 1 tail in-range not ] [ in-range ] if ] 1cond ;
+
+! : range-pattern ( string -- parser ) dup first 94 = [ 1 tail (range-pattern) ensure-not any-char & ] [ (range-pattern) ] if  ;
 
 : parse ( string parser -- ast ) [ str2v [ ] swap ] dip f parse-canceled set-global over length parse-length [ (parse) ] with-variable drop open-up ;
 
