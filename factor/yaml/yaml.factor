@@ -303,12 +303,14 @@ DEFER: c-flow-json-node
 
 ! Block scalar headers
 
-: c-indentation-indicator ( m -- parser ) ns-dec-digit swap [ [ dupd push ] curry action ] [ "n/a" swap [ push ] 2curry e-node swap action ] bi 2choice ;
+: auto-detect ( n m -- parser ) [ s-indent s-space repeat1 ] [ [ [ dup length ] dip push ] curry ] bi* action 2seq ensure ;
+
+: c-indentation-indicator ( n m -- parser ) [ auto-detect ] keep ns-dec-digit swap [ dupd push ] curry action 2choice ;
 
 : c-chomping-indicator ( t -- parser ) [ "-" "strip" "+" "keep" "" "clip" ] dip [ [ token ignore ] 2dip [ push ] 2curry action ] curry 2tri@ 3choice  ;
 
 ! /!\ Error, error, errooor !
-: c-b-block-header ( m t -- parser ) [ c-indentation-indicator ] [ c-chomping-indicator ] bi* 2dup swap [ 2seq ] 2bi@ 2choice s-b-comment 2seq ;
+: c-b-block-header ( n m t -- parser ) [ c-indentation-indicator ] [ c-chomping-indicator ] bi* 2dup swap [ 2seq ] 2bi@ 2choice s-b-comment 2seq ;
 
 : b-chomped-last ( t -- parser ) { { "strip" [ b-non-content ] } { "clip" [ b-as-line-feed ] } { "keep" [ b-as-line-feed ] } } case ;
 
@@ -324,7 +326,7 @@ DEFER: c-flow-json-node
 : b-nb-literal-next ( n -- parser ) l-nb-literal-text b-as-line-feed swap 2seq ;
 : l-literal-content ( n t -- parser ) [ [ [ l-nb-literal-text ] [ b-nb-literal-next repeat0 ] bi ] [ b-chomped-last ] bi* 3seq optional ] [ l-chomped-empty ] 2bi 2seq ;
 
-: c-l+literal ( n m t -- parser ) [ [ V{ } clone [ adder ] keep ] dip l-literal-content ] 2keep c-b-block-header "|" token trap 4seq ;
+: c-l+literal ( n -- parser ) newvect newvect [ c-b-block-header "|" token swap ] 3keep [ newvect [ adder ] keep ] dip l-literal-content 4seq ;
 
 : s-nb-folded-text ( n -- parser ) s-indent ns-char nb-char repeat0 3seq ;
 : l-nb-folded-lines ( n -- parser ) [ s-nb-folded-text ] [ "block-in" b-l-folded ] bi over 2seq repeat0 2seq ;
@@ -334,11 +336,11 @@ DEFER: c-flow-json-node
 : l-nb-spaced-lines ( n -- parser ) [ s-nb-spaced-text ] [ b-l-spaced ] bi over 2seq repeat0 2seq ;
 
 : l-nb-same-lines ( n -- parser ) [ "block-in" l-empty repeat0 ] [ l-nb-folded-lines ] [ l-nb-spaced-lines ] tri 2choice 2seq ;
-: l-nb-diff-lines ( n -- parser ) [ l-nb-same-lines ] [ l-nb-same-lines ] bi b-as-line-feed swap 2seq repeat0 2seq ;
+: l-nb-diff-lines ( n -- parser ) l-nb-same-lines dup b-as-line-feed swap 2seq repeat0 2seq ;
 
 : l-folded-content ( n t -- parser ) [ [ l-nb-diff-lines ] [ b-chomped-last ] bi* 2seq optional ] [ l-chomped-empty ] 2bi 2seq ;
 
-: c-l+folded ( n m t -- parser ) [ c-b-block-header ">" token trap ] 2keep [ V{ } clone [ adder ] keep ] dip l-folded-content 4seq ;
+: c-l+folded ( n -- parser ) newvect newvect [ c-b-block-header ">" token swap ] 3keep [ newvect [ adder ] keep ] dip l-folded-content 4seq ;
 
 DEFER: c-l-block-seq-entry 
 DEFER: ns-l-compact-mapping
@@ -346,11 +348,11 @@ DEFER: s-l+block-node
 
 : ns-l-compact-sequence ( n -- parser ) [ c-l-block-seq-entry ] [ s-indent ] bi@ over 2seq repeat0 2seq ;
 
-: s-l+block-indented ( m n context -- parser ) [ [ s-indent ] keep ] 2dip dupd [ 1 + + [ ns-l-compact-sequence ] [ ns-l-compact-mapping ] bi ] 2dip 2choice 2seq s-l+block-node e-node s-l-comments 2seq 3choice ;
+: s-l+block-indented ( n context -- parser ) [ [ newvect [ auto-detect ] [ s-indent ] [ [ 1 + ] dip newvect [ adder ] keep ] tri@ [ ns-l-compact-sequence ] [ ns-l-compact-mapping ] bi@ 2choice 4seq ] keep ] dip s-l+block-node e-node s-l-comments 2seq 3choice ;
 
 : c-l-block-seq-entry ( n -- parser ) "block-in" s-l+block-indented ns-char ensure-not "-" token swap 3seq ;
 ! /* For some fixed auto-detected m > 0 */
-: l+block-sequence ( m n -- parser ) + [ s-indent ] [ c-l-block-seq-entry ] bi 2seq repeat1 ;
+: l+block-sequence ( n -- parser ) V{ } clone [ auto-detect ] 2keep V{ } [ adder ] [ s-indent ] [ c-l-block-seq-entry ] tri 2seq repeat1 3seq ;
 
 : c-l-block-map-explicit-key ( n -- parser ) "?" token swap "block-out" s-l+block-indented 2seq ;
 : l-block-map-explicit-value ( n -- parser ) [ s-indent ":" token ] [ "block-out" s-l+block-indented ] 3seq ;
@@ -362,17 +364,17 @@ DEFER: s-l+block-node
 
 : ns-l-block-map-entry ( n -- parser ) [ c-l-block-map-explicit-entry ] [ ns-l-block-map-implicit-entry ] bi@ 2choice ;
 
-: l+block-mapping ( m n -- parser ) V{ } clone [ adder ] [ s-indent ] [ ns-l-block-map-entry ] tri@ 2seq repeat1 2seq ;
+: l+block-mapping ( n -- parser ) V{ } clone [ auto-detect ] 2keep V{ } clone [ adder ] [ s-indent ] [ ns-l-block-map-entry ] tri 2seq repeat1 3seq ;
 
 : ns-l-compact-mapping ( n -- parser ) [ ns-l-block-map-entry ] [ s-indent ] bi@ over 2seq repeat0 2seq ;
 
 : seq-spaces ( n context -- n ) { { "block-out" [ 1 - ] } { "block-in" [ ] } } case ; 
-: s-l+block-collection ( n context -- parser ) [ [ 1 + ] dip [ s-separate ] [ c-ns-properties ] 2bi@ 2seq optional s-l-comments ] keep over [ seq-spaces l+block-sequence ] [ l+block-mapping ] bi* 2choice 3seq ;
+: s-l+block-collection ( n context -- parser ) [ [ 1 + ] dip [ s-separate ] [ c-ns-properties ] 2bi 2seq optional s-l-comments ] 2keep over [ seq-spaces l+block-sequence ] [ l+block-mapping ] bi* 2choice 3seq ;
 
-: s-l+block-scalar ( n context -- parser ) over [ [ 1 + ] dip [ s-separate ] [ c-ns-properties ] 2bi@ over 2seq optional ] dip [ c-l+literal ] [ c-l+folded ] bi@ 2choice 3seq ; 
-: s-l+block-in-block ( n context -- parser ) [ s-l+block-scalar ] [ s-l+block-collection ] 2bi@ 2choice ;
+: s-l+block-scalar ( n context -- parser ) over [ [ 1 + ] dip [ s-separate ] [ c-ns-properties ] 2bi over 2seq optional ] dip [ c-l+literal ] [ c-l+folded ] bi@ 2choice 3seq ; 
+: s-l+block-in-block ( n context -- parser ) [ s-l+block-scalar ] [ s-l+block-collection ] 2bi 2choice ;
 
-: s-l+flow-in-block ( n -- parser ) 1 + "flow-out" [ s-separate ] [ ns-flow-node ] 2bi@ s-l-comments 3seq ;
+: s-l+flow-in-block ( n -- parser ) 1 + "flow-out" [ s-separate ] [ ns-flow-node ] 2bi s-l-comments 3seq ;
 : s-l+block-node ( n context -- parser ) over [ s-l+block-in-block ] [ s-l+flow-in-block ] bi* 2choice ;
 
 : l-document-prefix ( -- parser ) c-byte-order-mark optional l-comment repeat0 2seq ;
@@ -385,7 +387,7 @@ DEFER: s-l+block-node
 : l-bare-document ( -- parser ) -1 "block-in" s-l+block-node ;
 
 : l-explicit-document ( -- parser ) c-directives-end l-bare-document e-node s-l-comments 2seq 2choice 2seq ;
-: l-directive-document ( -- parser ) l-directive repeat1  l-explicit-document ;
+: l-directive-document ( -- parser ) l-directive repeat1  l-explicit-document 2seq ;
 
 : l-any-document ( -- parser ) l-directive-document l-explicit-document l-bare-document 3choice ;
 : l-yaml-stream ( -- parser ) l-document-prefix repeat0 l-any-document optional 2dup [ l-document-suffix repeat1 ] 2dip 3seq pick l-explicit-document optional 2seq 2choice repeat0 3seq ; 
