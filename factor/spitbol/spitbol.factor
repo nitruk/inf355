@@ -252,14 +252,6 @@ SYMBOL: parse-length
 
 : ensure-not ( parser -- parser ) [ force-back ] 1parser | 1son node new over >>sons [ parse-next-not ] swap 1vectrow swap parser boa ; 
 
-: exactly-n ( parser n -- parser ) V{ } clone [ [ (enforce-n-init) ] curry [ extract ] swap compose curry-quot ] [ [ (enforce-n-loop) ] curry-quot ] [ [ (enforce-n-end) ] curry-quot ] tri end-node arrow boa [ node new [ arrow boa ] keep ] dip swap [ [ 2vector node new swap >>sons [ 1vectrow ] curry bi@ ] keep ] dip 3 1 mnswap >>sons drop 1vector parser boa ;
-
-: at-most-n ( parser n -- parser ) V{ } clone [ [ (enforce-n-init) ] curry [ extract ] swap compose curry-quot ] [ [ (enforce-n-loop) ] curry-quot ] bi min-arrow [ node new [ arrow boa ] keep ] dip swap [ [ 2vector node new swap >>sons [ 1vectrow ] curry bi@ ] keep ] dip 3 1 mnswap >>sons drop 1vector parser boa ;
-
-: at-least-n ( parser n -- parser ) [ exactly-n ] curry [ arbnog ] bi & ;
-
-: from-m-to-n ( parser m n -- parser ) [ over ] dip [ exactly-n ensure ] [ at-most-n ] 2bi* & ;
-
 : range-pattern ( string -- parser ) [ dup first 94 = [ 1 tail in-range not ] [ in-range ] if ] 1cond ;
 
 ! : range-pattern ( string -- parser ) dup first 94 = [ 1 tail (range-pattern) ensure-not any-char & ] [ (range-pattern) ] if  ;
@@ -273,6 +265,14 @@ SYMBOL: parse-length
 : repeat1 ( parser -- parser ) dup (repeat1) ; 
 
 : optional ( parser -- parser ) min-arrow [ to>> ] keep [ arrow boa ] dip 2vector dup parser boa ;
+
+: exactly-n ( parser n -- parser ) V{ } clone [ [ (enforce-n-init) ] curry [ extract ] swap compose curry-quot ] [ [ (enforce-n-loop) ] curry-quot ] [ [ (enforce-n-end) ] curry-quot ] tri end-node arrow boa [ node new [ arrow boa ] keep ] dip swap [ [ 2vector node new swap >>sons [ 1vectrow ] curry bi@ ] keep ] dip 3 1 mnswap >>sons drop 1vector parser boa ;
+
+: at-most-n ( parser n -- parser ) V{ } clone [ [ (enforce-n-init) ] curry [ extract ] swap compose curry-quot ] [ [ (enforce-n-loop) ] curry-quot ] bi min-arrow [ node new [ arrow boa ] keep ] dip swap [ [ 2vector node new swap >>sons [ 1vectrow ] curry bi@ ] keep ] dip 3 1 mnswap >>sons drop 1vector parser boa ;
+
+: at-least-n ( parser n -- parser ) [ exactly-n ] curry [ arbnog ] bi & [ first2 append ] action ;
+
+: from-m-to-n ( parser m n -- parser ) [ over ] dip [ exactly-n ensure ] [ at-most-n ] 2bi* & ;
 
 : ignore ( parser -- parser ) [ drop parse-null ] action ;
 
