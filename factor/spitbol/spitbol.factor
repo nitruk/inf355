@@ -141,7 +141,9 @@ SYMBOL: parse-length
 
 : force-back ( quot ast vector node -- ast vector ) drop [ 2drop parse-failed ] dip ;
 
-: 1cond ( string cond -- vector ) extract-inject [ rot [ [ unclip-last ] 2dip [ drop 1string swap ] [ parse-error ] smart-if ] dip parse-next ] 2curser ;
+: 0cond ( cond -- parser ) [ [ ] [ parse-error ] smart-if parse-next-raw ] 1curser ;
+
+: 1cond ( string cond -- parser ) extract-inject [ rot [ [ unclip-last ] 2dip [ drop 1string swap ] [ parse-error ] smart-if ] dip parse-next ] 2curser ;
 
 : (nspan) ( vector string -- string vector ) [ member? ] til-cond ;
 
