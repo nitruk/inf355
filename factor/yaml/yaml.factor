@@ -36,7 +36,7 @@ IN: yaml
 : c-mapping-start ( -- parser ) "{" token ; 
 : c-mapping-end ( -- parser ) "}" token ; 
 
-: c-flow-indicator ( -- parser ) { c-collect-entry c-sequence-start c-sequence-end c-mapping-start c-mapping-end } choice ; 
+: c-flow-indicator ( -- parser ) [ c-collect-entry , c-sequence-start , c-sequence-end , c-mapping-start , c-mapping-end , ] choice* ; 
 
 : c-comment ( -- parser ) "#" token ;
 
@@ -54,13 +54,13 @@ IN: yaml
 
 : c-reserved ( -- parser ) "@" token "`" token 2choice ;
 
-: c-indicator ( -- parser ) { c-sequence-entry c-mapping-key c-mapping-value c-flow-indicator c-comment c-anchor c-alias c-tag c-literal c-folded c-single-quote c-double-quote c-directive c-reserved } choice ;
+: c-indicator ( -- parser ) [ c-sequence-entry , c-mapping-key , c-mapping-value , c-flow-indicator , c-comment , c-anchor , c-alias , c-tag , c-literal , c-folded , c-single-quote , c-double-quote , c-directive , c-reserved , ] choice* ;
 
 ! Line break characters
 
 : b-line-feed ( -- parser ) 0xa 1token ;
 : b-carriage-return ( -- parser ) 0xd 1token ;
-: b-char ( -- parser ) { b-line-feed b-carriage-return } choice ;
+: b-char ( -- parser ) b-line-feed b-carriage-return 2choice ;
 
 : nb-char ( -- parser ) b-char c-byte-order-mark c-printable -2+1 ;
 
@@ -101,7 +101,7 @@ IN: yaml
 
 : s-indent ( n -- parser ) dup "n/a" = [ drop s-space repeat0 ] [ s-space swap exactly-n ] if ;
 : s-indent-le ( n -- parser ) s-space swap at-most-n ;
-: s-indent-lt ( n -- parser ) 1 - s-indent-le ;
+: s-indent-lt ( n -- parser ) [ 1 - s-indent-le ] extract-1curser ;
 
 ! Separation spaces
 
@@ -312,7 +312,9 @@ DEFER: c-flow-json-node
 ! /!\ Error, error, errooor !
 : c-b-block-header ( n m t -- parser ) [ c-indentation-indicator ] [ c-chomping-indicator ] bi* 2dup swap [ 2seq ] 2bi@ 2choice s-b-comment 2seq ;
 
-: b-chomped-last ( t -- parser ) { { "strip" [ b-non-content ] } { "clip" [ b-as-line-feed ] } { "keep" [ b-as-line-feed ] } } case ;
+: condpare ( var const -- parser ) [ = ] curry extract-inject curry 0cond ;
+
+: b-chomped-last ( t -- parser ) [ "strip" condpare b-non-content & ] [ "clip" condpare b-as-line-feed & ] [ "keep" condpare b-as-line-feed & ] tri 3choice  ;
 
 : l-trail-comments ( n -- parser ) s-indent-lt c-nb-comment-text b-comment l-comment repeat0 4seq ;
 
@@ -320,7 +322,7 @@ DEFER: c-flow-json-node
 
 : l-keep-empty ( n -- parser ) [ "block-in" l-empty repeat0 ] [ l-trail-comments optional ] bi@ 2seq ;
 
-: l-chomped-empty ( n t -- parser ) { { "strip" [ l-strip-empty ] } { "clip" [ l-strip-empty ] } { "keep" [ l-keep-empty ] } } case ;
+: l-chomped-empty ( n t -- parser ) [ [ "strip" condpare ] [ l-strip-empty ] bi* &  ] [ [ "clip" condpare ] [ l-strip-empty ] bi* & ] [ [ "keep" condpare ] [ l-keep-empty ] bi* & ] 2tri 3choice  ;
 
 : l-nb-literal-text ( n -- parser ) [ "block-in" l-empty repeat0 ] [ s-indent ] bi nb-char repeat1 3seq ;
 : b-nb-literal-next ( n -- parser ) l-nb-literal-text b-as-line-feed swap 2seq ;
@@ -348,11 +350,11 @@ DEFER: s-l+block-node
 
 : ns-l-compact-sequence ( n -- parser ) [ c-l-block-seq-entry ] [ s-indent ] bi@ over 2seq repeat0 2seq ;
 
-: s-l+block-indented ( n context -- parser ) [ [ newvect [ auto-detect ] [ s-indent ] [ [ 1 + ] dip newvect [ adder ] keep ] tri@ [ ns-l-compact-sequence ] [ ns-l-compact-mapping ] bi@ 2choice 4seq ] keep ] dip s-l+block-node e-node s-l-comments 2seq 3choice ;
+: s-l+block-indented ( n context -- parser ) [ [ [ newvect [ auto-detect , ] [ s-indent , ] [ [ 1 newvect [ adder , ] keep ] dip newvect [ adder , ] keep ] tri@ [ ns-l-compact-sequence ] [ ns-l-compact-mapping ] bi@ 2choice , ] seq* ] keep ] dip s-l+block-node e-node s-l-comments 2seq 3choice ;
 
 : c-l-block-seq-entry ( n -- parser ) "block-in" s-l+block-indented ns-char ensure-not "-" token swap 3seq ;
 ! /* For some fixed auto-detected m > 0 */
-: l+block-sequence ( n -- parser ) V{ } clone [ auto-detect ] 2keep V{ } [ adder ] [ s-indent ] [ c-l-block-seq-entry ] tri 2seq repeat1 3seq ;
+: l+block-sequence ( n -- parser ) newvect [ auto-detect ] 2keep newvect [ adder ] [ s-indent ] [ c-l-block-seq-entry ] tri 2seq repeat1 3seq ;
 
 : c-l-block-map-explicit-key ( n -- parser ) "?" token swap "block-out" s-l+block-indented 2seq ;
 : l-block-map-explicit-value ( n -- parser ) [ s-indent ":" token ] [ "block-out" s-l+block-indented ] 3seq ;
@@ -364,17 +366,18 @@ DEFER: s-l+block-node
 
 : ns-l-block-map-entry ( n -- parser ) [ c-l-block-map-explicit-entry ] [ ns-l-block-map-implicit-entry ] bi@ 2choice ;
 
-: l+block-mapping ( n -- parser ) V{ } clone [ auto-detect ] 2keep V{ } clone [ adder ] [ s-indent ] [ ns-l-block-map-entry ] tri 2seq repeat1 3seq ;
+: l+block-mapping ( n -- parser ) newvect [ auto-detect ] 2keep newvect [ adder ] [ s-indent ] [ ns-l-block-map-entry ] tri 2seq repeat1 3seq ;
 
 : ns-l-compact-mapping ( n -- parser ) [ ns-l-block-map-entry ] [ s-indent ] bi@ over 2seq repeat0 2seq ;
 
-: seq-spaces ( n context -- n ) { { "block-out" [ 1 - ] } { "block-in" [ ] } } case ; 
-: s-l+block-collection ( n context -- parser ) [ [ 1 + ] dip [ s-separate ] [ c-ns-properties ] 2bi 2seq optional s-l-comments ] 2keep over [ seq-spaces l+block-sequence ] [ l+block-mapping ] bi* 2choice 3seq ;
+! Directly integrated to s-l+block-collection for the sake of simplicity (if not reading simplicity for s-l+block-collection)
+! : seq-spaces ( n context -- n ) { { "block-out" [ -1 newvect [ adder ] keep ] } { "block-in" [ ] } } case ; 
+: s-l+block-collection ( n context -- parser ) [ [ 1 newvect [ adder ] keep ] dip [ s-separate ] [ c-ns-properties ] 2bi 3seq optional s-l-comments ] 2keep over [ [ l+block-sequence ] -rot { { "block-out" [ -1 newvect [ adder ] keep rot call 2seq ] } { "block-in" [ swap call ] } } case ] [ l+block-mapping ] bi* 2choice 3seq ;
 
-: s-l+block-scalar ( n context -- parser ) over [ [ 1 + ] dip [ s-separate ] [ c-ns-properties ] 2bi over 2seq optional ] dip [ c-l+literal ] [ c-l+folded ] bi@ 2choice 3seq ; 
+: s-l+block-scalar ( n context -- parser ) over [ [ 1 newvect [ adder ] keep ] dip [ s-separate ] [ c-ns-properties ] 2bi over 2seq optional ] dip [ c-l+literal ] [ c-l+folded ] bi@ 2choice 4seq ; 
 : s-l+block-in-block ( n context -- parser ) [ s-l+block-scalar ] [ s-l+block-collection ] 2bi 2choice ;
 
-: s-l+flow-in-block ( n -- parser ) 1 + "flow-out" [ s-separate ] [ ns-flow-node ] 2bi s-l-comments 3seq ;
+: s-l+flow-in-block ( n -- parser ) 1 newvect [ adder ] keep "flow-out" [ s-separate ] [ ns-flow-node ] 2bi s-l-comments 4seq ;
 : s-l+block-node ( n context -- parser ) over [ s-l+block-in-block ] [ s-l+flow-in-block ] bi* 2choice ;
 
 : l-document-prefix ( -- parser ) c-byte-order-mark optional l-comment repeat0 2seq ;
